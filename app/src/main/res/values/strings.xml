@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Movie App</string>
+
+    <string name="discover">Discover</string>
+    <string name="title_discover">Discover Movies</string>
+    <string name="detail">Detail</string>
+    <string name="official_genre">Official Genres</string>
+
+    <string name="label_watch_trailer">Watch Trailer</string>
+    <string name="label_see_review">See Review</string>
+    <string name="label_total_review">%d Reviews</string>
+    <string name="title_user_reviews">User Reviews</string>
+    <string name="value_vote_count">%1$s (%2$s)</string>
+    <string name="tap_to_retry">Tap to retry</string>
+
+    <string name="placeholder_year">2019</string>
+
+</resources>

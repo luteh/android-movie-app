@@ -1,0 +1,54 @@
+ext.versions = [
+        // kotlin
+        kotlin           : '1.4.0',
+
+        // build gradle
+        buildGradle      : '4.0.1',
+
+        // support library
+        appcompat        : '1.2.0',
+        coreKtx          : '1.3.1',
+        cardview         : '1.0.0',
+        recyclerview     : '1.1.0',
+        material         : '1.2.0',
+        constraint       : '2.0.1',
+
+        // architecture components
+        fragment         : '1.2.5',
+        lifecycle        : '2.2.0',
+        room             : '2.2.5',
+        archCompoment    : '2.1.0',
+        navigation       : '2.3.0',
+
+        // di
+        daggerHiltAndroid: '2.28.3-alpha',
+        daggerHilt       : '1.0.0-alpha02',
+
+        // network
+        retrofit         : '2.9.0',
+        okhttp           : '4.8.1',
+
+        // gson
+        gson             : '2.8.6',
+
+        // coroutines
+        coroutines       : '1.3.7',
+
+        // glide
+        glide            : '4.11.0',
+
+        // debugging
+        timber           : '4.7.1',
+
+        // unit test
+        truth            : '1.0.1',
+        junit            : '4.12',
+        turbine          : '0.2.0',
+        robolectric      : '4.3.1',
+        androidxTest     : '1.1.0',
+        androidxTestJunit: '1.1.2',
+        androidTestRunner: '1.3.0-beta01',
+        espresso         : '3.1.0',
+        mockitoKotlin    : '2.2.0',
+        mockitoInline    : '3.3.3'
+]
