@@ -2,7 +2,7 @@ package com.luteh.movieapp.ui.detail.adapter
 
 import androidx.recyclerview.widget.RecyclerView
 import com.luteh.movieapp.databinding.ItemDetailGenreBinding
-import com.luteh.movieapp.domain.model.moviedetail.Genre
+import com.luteh.core.domain.model.moviedetail.Genre
 
 /**
  * Created by Luthfan Maftuh

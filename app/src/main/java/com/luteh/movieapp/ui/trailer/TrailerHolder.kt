@@ -4,9 +4,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubeThumbnailLoader
 import com.google.android.youtube.player.YouTubeThumbnailView
-import com.luteh.movieapp.BuildConfig
+import com.luteh.core.BuildConfig
 import com.luteh.movieapp.databinding.ItemTrailerBinding
-import com.luteh.movieapp.domain.model.moviedetail.VideoResult
+import com.luteh.core.domain.model.moviedetail.VideoResult
 import timber.log.Timber
 
 /**

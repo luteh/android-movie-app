@@ -2,9 +2,9 @@ package com.luteh.movieapp.ui.detail.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.luteh.movieapp.common.base.BaseAdapter
+import com.luteh.core.common.base.BaseAdapter
 import com.luteh.movieapp.databinding.ItemDetailHeaderBinding
-import com.luteh.movieapp.domain.model.moviedetail.BackdropPoster
+import com.luteh.core.domain.model.moviedetail.BackdropPoster
 
 /**
  * Created by Luthfan Maftuh

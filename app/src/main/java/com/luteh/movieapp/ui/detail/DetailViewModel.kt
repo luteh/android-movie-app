@@ -4,9 +4,9 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
-import com.luteh.movieapp.common.base.BaseViewModel
-import com.luteh.movieapp.domain.usecase.GetMovieDetailUseCase
-import com.luteh.movieapp.domain.usecase.GetMovieDetailUseCaseParams
+import com.luteh.core.common.base.BaseViewModel
+import com.luteh.core.domain.usecase.GetMovieDetailUseCase
+import com.luteh.core.domain.usecase.GetMovieDetailUseCaseParams
 
 /**
  * Created by Luthfan Maftuh

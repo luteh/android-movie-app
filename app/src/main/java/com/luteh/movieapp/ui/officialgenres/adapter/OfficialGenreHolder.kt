@@ -3,7 +3,7 @@ package com.luteh.movieapp.ui.officialgenres.adapter
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.luteh.movieapp.databinding.ItemOfficialGenreBinding
-import com.luteh.movieapp.domain.model.moviedetail.Genre
+import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.movieapp.ui.officialgenres.OfficialGenreFragmentDirections
 
 /**

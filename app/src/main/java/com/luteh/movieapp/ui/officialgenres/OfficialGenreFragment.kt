@@ -7,11 +7,11 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
-import com.luteh.movieapp.common.base.BaseFragment
-import com.luteh.movieapp.common.extensions.observe
-import com.luteh.movieapp.common.extensions.shouldVisible
-import com.luteh.movieapp.common.utils.EspressoIdlingResource
-import com.luteh.movieapp.data.Resource
+import com.luteh.core.common.base.BaseFragment
+import com.luteh.core.common.extensions.observe
+import com.luteh.core.common.extensions.shouldVisible
+import com.luteh.core.common.utils.EspressoIdlingResource
+import com.luteh.core.data.Resource
 import com.luteh.movieapp.databinding.FragmentOfficialGenreBinding
 import com.luteh.movieapp.ui.officialgenres.adapter.OfficialGenreAdapter
 import dagger.hilt.android.AndroidEntryPoint

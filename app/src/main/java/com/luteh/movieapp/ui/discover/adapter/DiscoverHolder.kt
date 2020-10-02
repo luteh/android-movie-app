@@ -2,11 +2,11 @@ package com.luteh.movieapp.ui.discover.adapter
 
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
-import com.luteh.movieapp.BuildConfig
-import com.luteh.movieapp.common.extensions.setImageFromUrlWithProgressBar
-import com.luteh.movieapp.common.utils.DateUtils
+import com.luteh.core.BuildConfig
+import com.luteh.core.common.extensions.setImageFromUrlWithProgressBar
+import com.luteh.core.common.utils.DateUtils
 import com.luteh.movieapp.databinding.ItemDiscoverBinding
-import com.luteh.movieapp.domain.model.MovieDiscover
+import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.movieapp.ui.discover.DiscoverFragmentDirections
 
 /**

@@ -2,7 +2,7 @@ package com.luteh.movieapp.ui.main
 
 import android.os.Bundle
 import com.luteh.movieapp.databinding.ActivityMainBinding
-import com.luteh.movieapp.common.base.BaseActivity
+import com.luteh.core.common.base.BaseActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

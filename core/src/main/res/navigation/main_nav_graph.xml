@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_nav_graph"
+    app:startDestination="@id/officialGenreFragment">
+    <fragment
+        android:id="@+id/discoverFragment"
+        android:name="com.luteh.movieapp.ui.discover.DiscoverFragment"
+        android:label="@string/discover">
+        <action
+            android:id="@+id/action_discoverFragment_to_detailFragment"
+            app:destination="@id/detailFragment"
+            app:launchSingleTop="false" />
+
+        <argument
+            android:name="genreId"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.luteh.movieapp.ui.detail.DetailFragment"
+        android:label="@string/detail">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+        <action
+            android:id="@+id/action_detailFragment_to_reviewFragment"
+            app:destination="@id/reviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/officialGenreFragment"
+        android:name="com.luteh.movieapp.ui.officialgenres.OfficialGenreFragment"
+        android:label="fragment_official_genre">
+        <action
+            android:id="@+id/action_officialGenreFragment_to_discoverFragment"
+            app:destination="@id/discoverFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/reviewFragment"
+        android:name="com.luteh.movieapp.ui.review.ReviewFragment"
+        android:label="ReviewFragment">
+        <argument
+            android:name="movieId"
+            app:argType="integer" />
+    </fragment>
+</navigation>

@@ -2,9 +2,9 @@ package com.luteh.movieapp.ui.officialgenres.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.luteh.movieapp.common.base.BaseAdapter
+import com.luteh.core.common.base.BaseAdapter
 import com.luteh.movieapp.databinding.ItemOfficialGenreBinding
-import com.luteh.movieapp.domain.model.moviedetail.Genre
+import com.luteh.core.domain.model.moviedetail.Genre
 
 /**
  * Created by Luthfan Maftuh

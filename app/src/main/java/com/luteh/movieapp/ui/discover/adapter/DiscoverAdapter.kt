@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.luteh.movieapp.databinding.ItemDiscoverBinding
-import com.luteh.movieapp.domain.model.MovieDiscover
+import com.luteh.core.domain.model.MovieDiscover
 
 /**
  * Created by Luthfan Maftuh on 8/31/2020.

@@ -1,10 +1,10 @@
 package com.luteh.movieapp.ui.detail.adapter
 
 import androidx.recyclerview.widget.RecyclerView
-import com.luteh.movieapp.BuildConfig
-import com.luteh.movieapp.common.extensions.setImageFromUrlWithProgressBar
+import com.luteh.core.BuildConfig
+import com.luteh.core.common.extensions.setImageFromUrlWithProgressBar
 import com.luteh.movieapp.databinding.ItemDetailHeaderBinding
-import com.luteh.movieapp.domain.model.moviedetail.BackdropPoster
+import com.luteh.core.domain.model.moviedetail.BackdropPoster
 
 /**
  * Created by Luthfan Maftuh

@@ -1,0 +1,98 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: "androidx.navigation.safeargs.kotlin"
+apply from: '../dependencies.gradle'
+apply from: '../common-android-config.gradle'
+
+// Define the endpoint strings
+def apikeyPropertiesFile = rootProject.file("apikey.properties")
+def apikeyProperties = new Properties()
+apikeyProperties.load(new FileInputStream(apikeyPropertiesFile))
+
+android {
+    defaultConfig {
+        consumerProguardFiles "consumer-rules.pro"
+
+        buildConfigField("String", "MOVIEDB_API_KEY", apikeyProperties['MOVIEDB_API_KEY'])
+        buildConfigField("String", "GOOGLE_API_KEY", apikeyProperties['GOOGLE_API_KEY'])
+
+        buildConfigField("String", "BASE_URL_MOVIEDB", '"https://api.themoviedb.org/3/"')
+        buildConfigField("String", "BASE_URL_IMAGE_POSTER", '"https://image.tmdb.org/t/p/w185/"')
+        buildConfigField("String", "BASE_URL_IMAGE_BACKDROP", '"https://image.tmdb.org/t/p/w780/"')
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.core:core-ktx:$versions.coreKtx"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint"
+
+    implementation "androidx.cardview:cardview:$versions.cardview"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    implementation "com.google.android.material:material:$versions.material"
+
+    // architecture components
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+    implementation "androidx.room:room-runtime:$versions.room"
+    implementation "androidx.room:room-ktx:$versions.room"
+    kapt "androidx.room:room-compiler:$versions.room"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompoment"
+
+    // network
+    implementation "com.squareup.retrofit2:retrofit:$versions.retrofit"
+    implementation "com.squareup.retrofit2:converter-gson:$versions.retrofit"
+    implementation "com.squareup.okhttp3:logging-interceptor:$versions.okhttp"
+    testImplementation "com.squareup.okhttp3:mockwebserver:$versions.okhttp"
+
+    // gson
+    implementation "com.google.code.gson:gson:${versions.gson}"
+
+    // dagger hilt
+    implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroid"
+    implementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroid"
+    implementation "androidx.hilt:hilt-common:$versions.daggerHilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.daggerHilt"
+    kapt "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroid"
+    kapt "androidx.hilt:hilt-compiler:$versions.daggerHilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroid"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroid"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    // JUnit
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$versions.androidxTestJunit"
+
+    // Espresso
+    implementation "androidx.test.espresso:espresso-idling-resource:$versions.espresso"
+
+    // Mockito Kotlin
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
+}

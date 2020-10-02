@@ -6,11 +6,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
-import com.luteh.movieapp.common.base.BaseViewModel
-import com.luteh.movieapp.data.Resource
-import com.luteh.movieapp.domain.model.Discover
-import com.luteh.movieapp.domain.usecase.GetMovieDiscoverUseCase
-import com.luteh.movieapp.domain.usecase.GetMovieDiscoverUseCaseParams
+import com.luteh.core.common.base.BaseViewModel
+import com.luteh.core.data.Resource
+import com.luteh.core.domain.model.Discover
+import com.luteh.core.domain.usecase.GetMovieDiscoverUseCase
+import com.luteh.core.domain.usecase.GetMovieDiscoverUseCaseParams
 
 /**
  * Created by Luthfan Maftuh on 8/26/2020.

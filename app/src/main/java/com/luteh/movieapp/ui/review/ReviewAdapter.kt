@@ -2,9 +2,9 @@ package com.luteh.movieapp.ui.review
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.luteh.movieapp.common.base.BaseAdapter
+import com.luteh.core.common.base.BaseAdapter
 import com.luteh.movieapp.databinding.ItemReviewBinding
-import com.luteh.movieapp.domain.model.moviedetail.ReviewResult
+import com.luteh.core.domain.model.moviedetail.ReviewResult
 
 /**
  * Created by Luthfan Maftuh

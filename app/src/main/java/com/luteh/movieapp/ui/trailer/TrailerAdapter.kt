@@ -2,9 +2,9 @@ package com.luteh.movieapp.ui.trailer
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import com.luteh.movieapp.common.base.BaseAdapter
+import com.luteh.core.common.base.BaseAdapter
 import com.luteh.movieapp.databinding.ItemTrailerBinding
-import com.luteh.movieapp.domain.model.moviedetail.VideoResult
+import com.luteh.core.domain.model.moviedetail.VideoResult
 
 /**
  * Created by Luthfan Maftuh

@@ -6,12 +6,12 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
-import com.luteh.movieapp.BuildConfig
+import com.luteh.core.common.extensions.gone
+import com.luteh.core.common.extensions.shouldVisible
+import com.luteh.core.domain.model.moviedetail.VideoResult
+import com.luteh.core.BuildConfig
 import com.luteh.movieapp.R
-import com.luteh.movieapp.common.extensions.gone
-import com.luteh.movieapp.common.extensions.shouldVisible
 import com.luteh.movieapp.databinding.ActivityTrailerBinding
-import com.luteh.movieapp.domain.model.moviedetail.VideoResult
 import timber.log.Timber
 
 class TrailerActivity : YouTubeBaseActivity() {
@@ -64,21 +64,30 @@ class TrailerActivity : YouTubeBaseActivity() {
     }
 
     private fun initYoutube() {
-        binding.youtubePlayer.initialize(BuildConfig.GOOGLE_API_KEY, object : YouTubePlayer.OnInitializedListener {
-            override fun onInitializationSuccess(p0: YouTubePlayer.Provider, p1: YouTubePlayer, p2: Boolean) {
-                if (!::youtubePlayer.isInitialized)
-                    youtubePlayer = p1
+        binding.youtubePlayer.initialize(
+            BuildConfig.GOOGLE_API_KEY,
+            object : YouTubePlayer.OnInitializedListener {
+                override fun onInitializationSuccess(
+                    p0: YouTubePlayer.Provider,
+                    p1: YouTubePlayer,
+                    p2: Boolean
+                ) {
+                    if (!::youtubePlayer.isInitialized)
+                        youtubePlayer = p1
 
-                trailerVideos?.let {
-                    if (it.isNotEmpty())
-                        youtubePlayer.cueVideo(it[0].key)
+                    trailerVideos?.let {
+                        if (it.isNotEmpty())
+                            youtubePlayer.cueVideo(it[0].key)
+                    }
                 }
-            }
 
-            override fun onInitializationFailure(p0: YouTubePlayer.Provider?, p1: YouTubeInitializationResult?) {
-                Timber.e("Youtube initialization failure $p1")
-            }
-        })
+                override fun onInitializationFailure(
+                    p0: YouTubePlayer.Provider?,
+                    p1: YouTubeInitializationResult?
+                ) {
+                    Timber.e("Youtube initialization failure $p1")
+                }
+            })
     }
 
     private fun initRecyclerView() {

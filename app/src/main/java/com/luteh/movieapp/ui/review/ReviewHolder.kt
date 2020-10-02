@@ -2,7 +2,7 @@ package com.luteh.movieapp.ui.review
 
 import androidx.recyclerview.widget.RecyclerView
 import com.luteh.movieapp.databinding.ItemReviewBinding
-import com.luteh.movieapp.domain.model.moviedetail.ReviewResult
+import com.luteh.core.domain.model.moviedetail.ReviewResult
 
 /**
  * Created by Luthfan Maftuh
