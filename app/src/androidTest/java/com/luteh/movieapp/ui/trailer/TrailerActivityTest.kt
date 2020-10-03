@@ -9,9 +9,9 @@ import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.luteh.movieapp.R
-import com.luteh.movieapp.ui.discover.adapter.DiscoverHolder
+import com.luteh.discover.adapter.DiscoverHolder
 import com.luteh.movieapp.ui.main.MainActivity
-import com.luteh.movieapp.ui.officialgenres.adapter.OfficialGenreHolder
+import com.luteh.genres.adapter.OfficialGenreHolder
 import com.luteh.movieapp.utils.EspressoIdlingResourceRule
 import org.junit.Rule
 import org.junit.Test

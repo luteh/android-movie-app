@@ -5,7 +5,6 @@ import com.luteh.core.utils.MainCoroutinesRule
 import com.luteh.core.data.remote.network.ApiResponse
 import com.luteh.core.data.remote.network.ApiService
 import com.luteh.core.data.remote.response.discover.DiscoverResponse
-import com.luteh.core.data.remote.response.discover.MovieDiscoverResponse
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify

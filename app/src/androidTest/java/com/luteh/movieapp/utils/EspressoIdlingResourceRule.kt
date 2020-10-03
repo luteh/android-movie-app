@@ -1,7 +1,7 @@
 package com.luteh.movieapp.utils
 
 import androidx.test.espresso.IdlingRegistry
-import com.luteh.movieapp.common.utils.EspressoIdlingResource
+import com.luteh.core.common.utils.EspressoIdlingResource
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 

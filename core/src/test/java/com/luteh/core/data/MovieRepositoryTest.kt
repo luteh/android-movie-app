@@ -7,7 +7,6 @@ import com.luteh.core.data.local.room.MovieDao
 import com.luteh.core.data.remote.RemoteDataSource
 import com.luteh.core.data.remote.network.ApiService
 import com.luteh.core.data.remote.response.discover.DiscoverResponse
-import com.luteh.core.domain.model.MovieDiscover
 import com.nhaarman.mockitokotlin2.atLeastOnce
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify

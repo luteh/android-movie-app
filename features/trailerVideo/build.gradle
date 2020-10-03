@@ -1,0 +1,7 @@
+apply from: '../../common-features-dependencies.gradle'
+apply from: '../../common-android-config.gradle'
+
+dependencies{
+    // Youtube
+    implementation files('libs/YouTubeAndroidPlayerApi.jar')
+}

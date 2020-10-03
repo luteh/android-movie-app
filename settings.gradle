@@ -1,3 +1,8 @@
+rootProject.name = "Movie App"
 include ':app'
 include ':core'
-rootProject.name = "Movie App"
+include ':features:userReviews'
+include ':features:trailerVideo'
+include ':features:discover'
+include ':features:genres'
+include ':features:detail'

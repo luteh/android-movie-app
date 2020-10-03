@@ -9,7 +9,7 @@ import androidx.test.espresso.matcher.ViewMatchers.withId
 import androidx.test.ext.junit.rules.ActivityScenarioRule
 import com.luteh.movieapp.R
 import com.luteh.movieapp.ui.main.MainActivity
-import com.luteh.movieapp.ui.officialgenres.adapter.OfficialGenreHolder
+import com.luteh.genres.adapter.OfficialGenreHolder
 import com.luteh.movieapp.utils.EspressoIdlingResourceRule
 import com.luteh.movieapp.utils.RecyclerViewItemCountAssertion
 import org.hamcrest.CoreMatchers.not

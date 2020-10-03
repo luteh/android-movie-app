@@ -5,7 +5,7 @@
     app:startDestination="@id/officialGenreFragment">
     <fragment
         android:id="@+id/discoverFragment"
-        android:name="com.luteh.movieapp.ui.discover.DiscoverFragment"
+        android:name="com.luteh.discover.DiscoverFragment"
         android:label="@string/discover">
         <action
             android:id="@+id/action_discoverFragment_to_detailFragment"
@@ -18,7 +18,7 @@
     </fragment>
     <fragment
         android:id="@+id/detailFragment"
-        android:name="com.luteh.movieapp.ui.detail.DetailFragment"
+        android:name="com.luteh.detail.DetailFragment"
         android:label="@string/detail">
         <argument
             android:name="movieId"
@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/officialGenreFragment"
-        android:name="com.luteh.movieapp.ui.officialgenres.OfficialGenreFragment"
+        android:name="com.luteh.genres.OfficialGenreFragment"
         android:label="fragment_official_genre">
         <action
             android:id="@+id/action_officialGenreFragment_to_discoverFragment"
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
         android:id="@+id/reviewFragment"
-        android:name="com.luteh.movieapp.ui.review.ReviewFragment"
+        android:name="com.luteh.userreviews.ReviewFragment"
         android:label="ReviewFragment">
         <argument
             android:name="movieId"

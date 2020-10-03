@@ -13,9 +13,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.luteh.movieapp.ui.trailer.TrailerActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize" />
-        <activity
             android:name="com.luteh.movieapp.ui.main.MainActivity"
             android:screenOrientation="portrait">
             <intent-filter>

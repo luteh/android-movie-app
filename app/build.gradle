@@ -5,19 +5,11 @@ apply plugin: 'kotlin-kapt'
 apply plugin: 'dagger.hilt.android.plugin'
 apply plugin: "androidx.navigation.safeargs.kotlin"
 apply from: '../dependencies.gradle'
+apply from: '../common-android-config.gradle'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
-
     defaultConfig {
         applicationId "com.luteh.movieapp"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
-
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
     buildTypes {
@@ -26,24 +18,18 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
-    compileOptions {
-        sourceCompatibility 1.8
-        targetCompatibility 1.8
-    }
-
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
-
-    buildFeatures {
-        viewBinding = true
-    }
 }
 
 dependencies {
-    implementation project(':core')
     implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    implementation project(':features:genres')
+    implementation project(':features:discover')
+    implementation project(':features:detail')
+    implementation project(':features:trailerVideo')
+    implementation project(':features:userReviews')
+    implementation project(':core')
+
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
 
     implementation "androidx.appcompat:appcompat:$versions.appcompat"

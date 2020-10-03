@@ -1,0 +1,74 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply plugin: 'dagger.hilt.android.plugin'
+apply from: '../../dependencies.gradle'
+
+dependencies {
+//    implementation project(':app')
+    implementation project(":core")
+    testImplementation project(":core")
+
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
+
+    implementation "androidx.appcompat:appcompat:$versions.appcompat"
+    implementation "androidx.core:core-ktx:$versions.coreKtx"
+    implementation "androidx.constraintlayout:constraintlayout:$versions.constraint"
+
+    implementation "androidx.cardview:cardview:$versions.cardview"
+    implementation "androidx.recyclerview:recyclerview:$versions.recyclerview"
+    implementation "com.google.android.material:material:$versions.material"
+
+    // architecture components
+    implementation "androidx.fragment:fragment-ktx:$versions.fragment"
+    implementation "androidx.lifecycle:lifecycle-extensions:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$versions.lifecycle"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:$versions.lifecycle"
+    implementation "androidx.navigation:navigation-fragment-ktx:$versions.navigation"
+    implementation "androidx.navigation:navigation-ui-ktx:$versions.navigation"
+    testImplementation "androidx.arch.core:core-testing:$versions.archCompoment"
+
+    // dagger hilt
+    implementation "com.google.dagger:hilt-android:$versions.daggerHiltAndroid"
+    implementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroid"
+    implementation "androidx.hilt:hilt-common:$versions.daggerHilt"
+    implementation "androidx.hilt:hilt-lifecycle-viewmodel:$versions.daggerHilt"
+    kapt "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroid"
+    kapt "androidx.hilt:hilt-compiler:$versions.daggerHilt"
+    androidTestImplementation "com.google.dagger:hilt-android-testing:$versions.daggerHiltAndroid"
+    kaptAndroidTest "com.google.dagger:hilt-android-compiler:$versions.daggerHiltAndroid"
+
+    // coroutines
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutines"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$versions.coroutines"
+
+    // glide
+    implementation "com.github.bumptech.glide:glide:$versions.glide"
+    kapt "com.github.bumptech.glide:compiler:$versions.glide"
+
+    // debugging
+    implementation "com.jakewharton.timber:timber:$versions.timber"
+
+    // JUnit
+    testImplementation "junit:junit:$versions.junit"
+    androidTestImplementation "androidx.test.ext:junit:$versions.androidxTestJunit"
+    androidTestImplementation "androidx.test.ext:junit-ktx:$versions.androidxTestJunit"
+
+    // Espresso
+    implementation "androidx.test.espresso:espresso-idling-resource:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$versions.espresso"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$versions.espresso"
+
+    // Test Core
+    androidTestImplementation "androidx.test:core:$versions.androidxTest"
+    androidTestImplementation "androidx.test:core-ktx:$versions.androidxTest"
+
+    androidTestImplementation "androidx.test:rules:$versions.androidxTest"
+
+    // Mockito Kotlin
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$versions.mockitoKotlin"
+}
