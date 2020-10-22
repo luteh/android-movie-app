@@ -1,7 +1,7 @@
 package com.luteh.core.data.local.room
 
 import androidx.room.*
-import com.luteh.core.data.local.entity.MovieDiscoverEntity
+import com.luteh.core.data.local.entity.FavoriteMovieEntity
 import kotlinx.coroutines.flow.Flow
 
 /**
@@ -10,15 +10,18 @@ import kotlinx.coroutines.flow.Flow
  */
 @Dao
 interface MovieDao {
-    @Query("SELECT * FROM movie_discover")
-    fun getAllMovie(): Flow<List<MovieDiscoverEntity>>
+    @Query("SELECT * FROM favorite_movie")
+    fun getAllFavoriteMovies(): Flow<List<FavoriteMovieEntity>>
 
-    @Query("SELECT * FROM movie_discover where isFavorite = 1")
-    fun getFavoriteMovie(): Flow<List<MovieDiscoverEntity>>
+    @Query("SELECT * FROM favorite_movie WHERE id=:movieId")
+    fun getFavoriteMovieById(movieId: Int): Flow<FavoriteMovieEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertMovie(tourism: List<MovieDiscoverEntity>)
+    suspend fun insertFavoriteMovie(favoriteMovieEntity: FavoriteMovieEntity)
 
     @Update
-    fun updateFavoriteMovie(tourism: MovieDiscoverEntity)
+    fun updateFavoriteMovie(favoriteMovieEntity: FavoriteMovieEntity)
+
+    @Query("DELETE FROM favorite_movie WHERE id = :movieId")
+    suspend fun deleteFavoriteMovieById(movieId: Int)
 }

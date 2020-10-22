@@ -18,6 +18,5 @@ data class MovieDiscover(
     val title: String, // Project Power
     val voteAverage: Double, // 6.7
     val overview: String, // An ex-soldier, a teen and a cop collide in New Orleans as they hunt for the source behind a dangerous new pill that grants users temporary superpowers.
-    val releaseDate: String, // 2020-08-14
-    val isFavorite: Boolean
+    val releaseDate: String // 2020-08-14
 ) : Parcelable

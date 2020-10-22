@@ -18,5 +18,9 @@
     <string name="title_genres">Genres</string>
     <string name="title_trailervideo">Trailer Video</string>
     <string name="title_userreviews">User Reviews</string>
+    <string name="title_favorite">Favorite</string>
 
+    <string name="msg_common_error">Something went wrong!</string>
+    <string name="msg_movie_saved">Movie saved into your favorite list</string>
+    <string name="msg_movie_deleted">Movie removed from your favorite list</string>
 </resources>

@@ -4,6 +4,7 @@ import com.luteh.core.data.local.LocalDataSource
 import com.luteh.core.data.remote.RemoteDataSource
 import com.luteh.core.data.remote.network.ApiResponse
 import com.luteh.core.domain.model.Discover
+import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.core.domain.model.moviedetail.MovieDetail
 import com.luteh.core.domain.model.moviedetail.Reviews
@@ -22,6 +23,7 @@ import javax.inject.Singleton
 class MovieRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource
 ) : IMovieRepository {
+    //region Remote Transaction
     override fun getMovieDiscover(page: Int, withGenres: String): Flow<Resource<Discover>> = flow {
         emit(Resource.Loading())
         when (val apiResponse = remoteDataSource.getMovieDiscover(page, withGenres).first()) {
@@ -69,4 +71,35 @@ class MovieRepository @Inject constructor(
             }
         }
     }
+    //endregion
+
+    //region Local Transaction
+    override suspend fun insertFavoriteMovie(movieDetail: MovieDetail) {
+        localDataSource.insertFavoriteMovie(movieDetail.toFavoriteMovieEntity())
+    }
+
+    override fun getAllFavoriteMovies(): Flow<Resource<List<MovieDiscover>>> = flow {
+        emit(Resource.Loading())
+        val data = localDataSource.getAllFavoriteMovies().first()
+        if (data.isNotEmpty()) {
+            emit(Resource.Success(data.map { it.toMovieDiscoverDomain() }))
+        } else {
+            emit(Resource.Empty)
+        }
+    }
+
+    override suspend fun deleteFavoriteMovieById(movieId: Int) {
+        localDataSource.deleteFavoriteMovieById(movieId)
+    }
+
+    override fun getFavoriteMovieById(movieId: Int): Flow<Resource<Unit>> = flow {
+        val data = localDataSource.getFavoriteMovieById(movieId).first()
+        if (data != null) {
+            emit(Resource.Success(Unit))
+        } else {
+            emit(Resource.Empty)
+        }
+    }
+
+    //endregion
 }

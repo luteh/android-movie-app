@@ -1,6 +1,6 @@
 package com.luteh.core.data.local
 
-import com.luteh.core.data.local.entity.MovieDiscoverEntity
+import com.luteh.core.data.local.entity.FavoriteMovieEntity
 import com.luteh.core.data.local.room.MovieDao
 import kotlinx.coroutines.flow.Flow
 import javax.inject.Inject
@@ -12,14 +12,17 @@ import javax.inject.Singleton
  */
 @Singleton
 class LocalDataSource @Inject constructor(private val movieDao: MovieDao) {
-    fun getAllMovie(): Flow<List<MovieDiscoverEntity>> = movieDao.getAllMovie()
+    fun getAllFavoriteMovies(): Flow<List<FavoriteMovieEntity>> = movieDao.getAllFavoriteMovies()
 
-    fun getFavoriteMovie(): Flow<List<MovieDiscoverEntity>> = movieDao.getFavoriteMovie()
+    suspend fun insertFavoriteMovie(favoriteMovieEntity: FavoriteMovieEntity) =
+        movieDao.insertFavoriteMovie(favoriteMovieEntity)
 
-    suspend fun insertMovie(movieList: List<MovieDiscoverEntity>) = movieDao.insertMovie(movieList)
-
-    fun setFavoriteMovie(movie: MovieDiscoverEntity, newState: Boolean) {
-        movie.isFavorite = newState
-        movieDao.updateFavoriteMovie(movie)
+    fun updateFavoriteMovie(favoriteMovie: FavoriteMovieEntity) {
+        movieDao.updateFavoriteMovie(favoriteMovie)
     }
+
+    suspend fun deleteFavoriteMovieById(movieId: Int) =
+        movieDao.deleteFavoriteMovieById(movieId)
+
+    fun getFavoriteMovieById(movieId: Int) = movieDao.getFavoriteMovieById(movieId)
 }

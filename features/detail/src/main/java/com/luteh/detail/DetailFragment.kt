@@ -1,15 +1,12 @@
 package com.luteh.detail
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.luteh.core.BuildConfig
-import com.luteh.core.R
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.constants.ActionConstants
 import com.luteh.core.common.extensions.*
@@ -35,6 +32,14 @@ class DetailFragment : BaseFragment() {
 
     private val genreAdapter = DetailGenreAdapter()
     private val headerAdapter = DetailHeaderAdapter()
+
+    private lateinit var menuItemFavoriteView: View
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        setHasOptionsMenu(true)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,15 +77,19 @@ class DetailFragment : BaseFragment() {
             when (it) {
                 is Resource.Success -> {
                     bind(it.data)
-                    vm.isDataFetched = true
+                    vm.onSuccessGetMovieDetail(it.data)
                     EspressoIdlingResource.decrement()
                 }
                 is Resource.Error -> {
                     Timber.e(it.throwable)
                 }
-                is Resource.Loading -> {
+                else -> {
                 }
             }
+        }
+
+        observe(vm.isFavoriteMovieLiveData) {
+            menuItemFavoriteView.isSelected = it
         }
 
         getMovieDetail()
@@ -145,6 +154,37 @@ class DetailFragment : BaseFragment() {
                     DetailFragmentDirections.actionDetailFragmentToReviewFragment(movieDetail.id)
                 findNavController().navigate(action)
             }
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_detail, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+
+        with(binding.root) {
+            handler.post {
+                menuItemFavoriteView = findViewById(R.id.menu_item_favorite)
+            }
+        }
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_item_favorite -> {
+                onClickFavorite()
+                return true
+            }
+        }
+        return false
+    }
+
+    private fun onClickFavorite() {
+        if (menuItemFavoriteView.isSelected) {
+            vm.deleteFavoriteMovieById()
+            showToast(requireContext(), R.string.msg_movie_deleted)
+        } else {
+            vm.insertFavoriteMovie()
+            showToast(requireContext(), R.string.msg_movie_saved)
         }
     }
 }

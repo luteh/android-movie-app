@@ -48,7 +48,6 @@ data class MovieDiscoverResponse(
         title = title,
         voteAverage = voteAverage,
         overview = overview,
-        releaseDate = releaseDate,
-        isFavorite = false
+        releaseDate = releaseDate
     )
 }

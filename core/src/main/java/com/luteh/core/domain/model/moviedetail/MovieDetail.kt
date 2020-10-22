@@ -1,5 +1,7 @@
 package com.luteh.core.domain.model.moviedetail
 
+import com.luteh.core.data.local.entity.FavoriteMovieEntity
+
 data class MovieDetail(
     val adult: Boolean, // false
     val backdropPath: String, // /zzWGRw277MNoCs3zhyG3YmYQsXv.jpg
@@ -29,4 +31,8 @@ data class MovieDetail(
     val videos: Videos,
     val reviews: Reviews,
     val images: Images
-)
+){
+    fun toFavoriteMovieEntity() = FavoriteMovieEntity(
+        id, posterPath, backdropPath, originalTitle, title, voteAverage, overview, releaseDate
+    )
+}
