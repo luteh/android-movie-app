@@ -2,7 +2,15 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_nav_graph"
-    app:startDestination="@id/officialGenreFragment">
+    app:startDestination="@id/mainFragment">
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.luteh.main.MainFragment"
+        android:label="@string/main">
+        <action
+            android:id="@+id/action_mainFragment_to_officialGenreFragment"
+            app:destination="@id/officialGenreFragment" />
+    </fragment>
     <fragment
         android:id="@+id/discoverFragment"
         android:name="com.luteh.discover.DiscoverFragment"

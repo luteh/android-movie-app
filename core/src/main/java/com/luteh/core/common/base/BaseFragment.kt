@@ -12,7 +12,7 @@ import com.luteh.core.R
  */
 abstract class BaseFragment : Fragment() {
 
-    private val baseActivity: BaseActivity get() = activity as BaseActivity
+    val baseActivity: BaseActivity get() = activity as BaseActivity
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

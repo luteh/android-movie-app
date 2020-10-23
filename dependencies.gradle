@@ -3,7 +3,7 @@ ext.versions = [
         kotlin           : '1.4.0',
 
         // build gradle
-        buildGradle      : '4.0.1',
+        buildGradle      : '4.1.0',
 
         // support library
         appcompat        : '1.2.0',

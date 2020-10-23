@@ -28,6 +28,7 @@ dependencies {
     implementation project(':features:detail')
     implementation project(':features:trailerVideo')
     implementation project(':features:userReviews')
+    implementation project(':features:main')
     implementation project(':core')
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$versions.kotlin"
