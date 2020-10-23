@@ -1,6 +1,6 @@
 package com.luteh.core.domain.usecase
 
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.withContext
 import timber.log.Timber
@@ -10,13 +10,13 @@ import timber.log.Timber
  */
 abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispatcher) {
 
-    /** Executes the use case asynchronously and returns a [Resource].
+    /** Executes the use case asynchronously and returns a [Result].
      *
-     * @return a [Resource].
+     * @return a [Result].
      *
      * @param parameters the input parameters to run the use case with
      */
-    suspend operator fun invoke(parameters: P): Resource<R> {
+    suspend operator fun invoke(parameters: P): Result<R> {
         return try {
             // Moving all use case's executions to the injected dispatcher
             // In production code, this is usually the Default dispatcher (background thread)
@@ -24,12 +24,12 @@ abstract class UseCase<in P, R>(private val coroutineDispatcher: CoroutineDispat
             withContext(coroutineDispatcher) {
                 execute(parameters).let {
                     Timber.d("$it")
-                    Resource.Success(it)
+                    Result.Success(it)
                 }
             }
         } catch (e: Exception) {
             Timber.d(e)
-            Resource.Error(throwable = e)
+            Result.Error(e)
         }
     }
 

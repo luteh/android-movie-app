@@ -3,7 +3,7 @@ package com.luteh.genres
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.core.domain.usecase.GetGenresUseCase
 import kotlinx.coroutines.flow.collect
@@ -17,7 +17,7 @@ class OfficialGenreViewModel @ViewModelInject constructor(
     private val getGenresUseCase: GetGenresUseCase
 ) : com.luteh.core.common.base.BaseViewModel() {
 
-    val genresLiveData = MutableLiveData<Resource<List<Genre>>>()
+    val genresLiveData = MutableLiveData<Result<List<Genre>>>()
     var isDataFetched = false
 
     fun getOfficialGenres() {

@@ -7,7 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import com.luteh.core.common.base.BaseViewModel
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.Discover
 import com.luteh.core.domain.usecase.GetMovieDiscoverUseCase
 import com.luteh.core.domain.usecase.GetMovieDiscoverUseCaseParams
@@ -24,7 +24,7 @@ class DiscoverViewModel @ViewModelInject constructor(private val getMovieDiscove
     var isLastItemMovies = false
 
     private val getMoviePage = MutableLiveData<Int>()
-    val discoverMovies: LiveData<Resource<Discover>>
+    val discoverMovies: LiveData<Result<Discover>>
 
     init {
         discoverMovies = getMoviePage.switchMap {

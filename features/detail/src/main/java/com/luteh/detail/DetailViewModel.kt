@@ -3,7 +3,7 @@ package com.luteh.detail
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.*
 import com.luteh.core.common.base.BaseViewModel
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.moviedetail.MovieDetail
 import com.luteh.core.domain.usecase.*
 import kotlinx.coroutines.flow.collect
@@ -56,7 +56,7 @@ class DetailViewModel @ViewModelInject constructor(
         mMovieDetail?.let {
             viewModelScope.launch {
                 getFavoriteMovieByIdUseCase(GetFavoriteMovieByIdParams(it.id)).collect {
-                    setIsFavoriteMovieLiveData(it is Resource.Success)
+                    setIsFavoriteMovieLiveData(it is Result.Success)
                 }
             }
         }

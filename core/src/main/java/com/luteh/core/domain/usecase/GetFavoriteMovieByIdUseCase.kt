@@ -1,6 +1,6 @@
 package com.luteh.core.domain.usecase
 
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.di.IoDispatcher
 import com.luteh.core.domain.repository.IMovieRepository
 import kotlinx.coroutines.CoroutineDispatcher
@@ -20,7 +20,7 @@ class GetFavoriteMovieByIdUseCase @Inject constructor(
     private val repository: IMovieRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
 ): FlowUseCase<GetFavoriteMovieByIdParams, Unit>(dispatcher){
-    override fun execute(parameters: GetFavoriteMovieByIdParams): Flow<Resource<Unit>> {
+    override fun execute(parameters: GetFavoriteMovieByIdParams): Flow<Result<Unit>> {
         val (movieId) = parameters
         return repository.getFavoriteMovieById(movieId)
     }

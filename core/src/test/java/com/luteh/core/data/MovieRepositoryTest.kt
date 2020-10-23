@@ -59,12 +59,12 @@ class MovieRepositoryTest {
         // When
         repository.getMovieDiscover(1, "28")
             .filter {
-                it !is Resource.Loading
+                it !is com.luteh.core.data.Resource.Result.Loading
             }
             // Then
             .collect {
                 assertNotNull(it)
-                assertEquals(it, Resource.Empty)
+                assertEquals(it, Result.Empty)
             }
 
         verify(apiService, atLeastOnce()).getMovieDiscover(1, "28")

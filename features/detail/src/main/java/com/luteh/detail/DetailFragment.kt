@@ -11,7 +11,7 @@ import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.constants.ActionConstants
 import com.luteh.core.common.extensions.*
 import com.luteh.core.common.utils.EspressoIdlingResource
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.moviedetail.MovieDetail
 import com.luteh.detail.adapter.DetailGenreAdapter
 import com.luteh.detail.adapter.DetailHeaderAdapter
@@ -71,16 +71,16 @@ class DetailFragment : BaseFragment() {
 
     private fun initViewModel() {
         observe(vm.movieDetailLiveData) {
-            binding.vLoading.pbCommon.shouldVisible(it is Resource.Loading)
-            binding.vLoading.tvRetry.shouldVisible(it is Resource.Error)
+            binding.vLoading.pbCommon.shouldVisible(it is Result.Loading)
+            binding.vLoading.tvRetry.shouldVisible(it is Result.Error)
 
             when (it) {
-                is Resource.Success -> {
+                is Result.Success -> {
                     bind(it.data)
                     vm.onSuccessGetMovieDetail(it.data)
                     EspressoIdlingResource.decrement()
                 }
-                is Resource.Error -> {
+                is Result.Error -> {
                     Timber.e(it.throwable)
                 }
                 else -> {
@@ -142,14 +142,14 @@ class DetailFragment : BaseFragment() {
 
     private fun setupListener(movieDetail: MovieDetail) {
         with(binding) {
-            cvWatchTrailer.setOnClickListener { v ->
+            cvWatchTrailer.setOnClickListener {
                 requireContext().navigateTo(
                     Features.TRAILER,
                     bundleOf(ActionConstants.ARG_TRAILER_VIDEOS to movieDetail.videos.videoResults)
                 )
             }
 
-            cvSeeReview.setOnClickListener { _ ->
+            cvSeeReview.setOnClickListener {
                 val action =
                     DetailFragmentDirections.actionDetailFragmentToReviewFragment(movieDetail.id)
                 findNavController().navigate(action)

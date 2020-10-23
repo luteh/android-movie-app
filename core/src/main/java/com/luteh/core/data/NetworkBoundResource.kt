@@ -1,6 +1,5 @@
 package com.luteh.core.data
 
-import com.luteh.core.data.remote.network.ApiResponse
 import kotlinx.coroutines.flow.*
 
 /**
@@ -8,39 +7,31 @@ import kotlinx.coroutines.flow.*
  * Email : luthfanmaftuh@gmail.com
  */
 abstract class NetworkBoundResource<ResultType, RequestType> {
-    private var result: Flow<Resource<ResultType>> = flow {
-        emit(Resource.Loading())
+    private var result: Flow<Result<ResultType>> = flow {
+        emit(Result.Loading)
         val dbSource = loadFromDB().first()
         if (shouldFetch(dbSource)) {
-            emit(Resource.Loading())
+            emit(Result.Loading)
             when (val apiResponse = createCall().first()) {
-                is ApiResponse.Success -> {
+                is Result.Success -> {
                     saveCallResult(apiResponse.data)
                     emitAll(loadFromDB().map {
-                        Resource.Success(
+                        Result.Success(
                             it
                         )
                     })
                 }
-                is ApiResponse.Empty -> {
+                is Result.Empty -> {
                     emitAll(loadFromDB().map {
-                        Resource.Success(
+                        Result.Success(
                             it
                         )
                     })
-                }
-                is ApiResponse.Error -> {
-                    onFetchFailed()
-                    emit(
-                        Resource.Error<ResultType>(
-                            apiResponse.errorMessage
-                        )
-                    )
                 }
             }
         } else {
             emitAll(loadFromDB().map {
-                Resource.Success(
+                Result.Success(
                     it
                 )
             })
@@ -53,9 +44,9 @@ abstract class NetworkBoundResource<ResultType, RequestType> {
 
     protected abstract fun shouldFetch(data: ResultType?): Boolean
 
-    protected abstract suspend fun createCall(): Flow<ApiResponse<RequestType>>
+    protected abstract suspend fun createCall(): Flow<Result<RequestType>>
 
     protected abstract suspend fun saveCallResult(data: RequestType)
 
-    fun asFlow(): Flow<Resource<ResultType>> = result
+    fun asFlow(): Flow<Result<ResultType>> = result
 }

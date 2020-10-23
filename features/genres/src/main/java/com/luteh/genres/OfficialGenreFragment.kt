@@ -11,7 +11,7 @@ import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.extensions.observe
 import com.luteh.core.common.extensions.shouldVisible
 import com.luteh.core.common.utils.EspressoIdlingResource
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.genres.adapter.OfficialGenreAdapter
 import com.luteh.genres.databinding.FragmentOfficialGenreBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -55,20 +55,14 @@ class OfficialGenreFragment : BaseFragment() {
     private fun initViewModel() {
         observe(vm.genresLiveData) {
             Timber.d("$it")
-            binding.vLoading.pbCommon.shouldVisible(it is Resource.Loading)
-            binding.vLoading.tvRetry.shouldVisible(it is Resource.Error)
+            binding.vLoading.pbCommon.shouldVisible(it is Result.Loading)
+            binding.vLoading.tvRetry.shouldVisible(it is Result.Error)
 
             when (it) {
-                is Resource.Success -> {
+                is Result.Success -> {
                     adapter.setDataSource(it.data)
                     vm.isDataFetched = true
                     EspressoIdlingResource.decrement()
-                }
-                is Resource.Empty -> {
-
-                }
-                is Resource.Loading -> {
-
                 }
             }
         }

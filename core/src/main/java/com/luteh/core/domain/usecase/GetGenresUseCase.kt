@@ -1,6 +1,6 @@
 package com.luteh.core.domain.usecase
 
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.di.IoDispatcher
 import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.core.domain.repository.IMovieRepository
@@ -16,7 +16,7 @@ class GetGenresUseCase @Inject constructor(
     private val repository: IMovieRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
 ) : FlowUseCase<Unit, List<Genre>>(dispatcher) {
-    override fun execute(parameters: Unit): Flow<Resource<List<Genre>>> {
+    override fun execute(parameters: Unit): Flow<Result<List<Genre>>> {
         return repository.getGenreList()
     }
 }

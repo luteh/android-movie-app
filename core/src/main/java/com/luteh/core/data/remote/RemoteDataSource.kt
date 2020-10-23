@@ -1,6 +1,6 @@
 package com.luteh.core.data.remote
 
-import com.luteh.core.data.remote.network.ApiResponse
+import com.luteh.core.data.Result
 import com.luteh.core.data.remote.network.ApiService
 import com.luteh.core.data.remote.response.GenreResponse
 import com.luteh.core.data.remote.response.discover.DiscoverResponse
@@ -17,40 +17,41 @@ import javax.inject.Singleton
  */
 @Singleton
 class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
-    suspend fun getMovieDiscover(page: Int, withGenres: String): Flow<ApiResponse<DiscoverResponse>> = flow {
-        val response = apiService.getMovieDiscover(page, withGenres)
-        if (response != null && response.results.isNotEmpty()) {
-            emit(ApiResponse.Success(response))
-        } else {
-            emit(ApiResponse.Empty)
+    suspend fun getMovieDiscover(page: Int, withGenres: String): Flow<Result<DiscoverResponse>> =
+        flow {
+            val response = apiService.getMovieDiscover(page, withGenres)
+            if (response != null && response.results.isNotEmpty()) {
+                emit(Result.Success(response))
+            } else {
+                emit(Result.Empty)
+            }
         }
-    }
 
-    suspend fun getOfficialGenres(): Flow<ApiResponse<List<GenreResponse.GenresResponse>>> = flow {
+    suspend fun getOfficialGenres(): Flow<Result<List<GenreResponse.GenresResponse>>> = flow {
         val response = apiService.getOfficialGenres()
         val dataArray = response.genres
         if (dataArray.isNotEmpty()) {
-            emit(ApiResponse.Success(dataArray))
+            emit(Result.Success(dataArray))
         } else {
-            emit(ApiResponse.Empty)
+            emit(Result.Empty)
         }
     }
 
-    suspend fun getMovieDetail(movieId: Int): Flow<ApiResponse<MovieDetailResponse>> = flow {
+    suspend fun getMovieDetail(movieId: Int): Flow<Result<MovieDetailResponse>> = flow {
         val response = apiService.getMovieDetail(movieId)
         if (response != null) {
-            emit(ApiResponse.Success(response))
+            emit(Result.Success(response))
         } else {
-            emit(ApiResponse.Empty)
+            emit(Result.Empty)
         }
     }
 
-    suspend fun getReviews(movieId: Int, page: Int): Flow<ApiResponse<ReviewsResponse>> = flow {
+    suspend fun getReviews(movieId: Int, page: Int): Flow<Result<ReviewsResponse>> = flow {
         val response = apiService.getReviews(movieId, page)
         if (response != null && response.results.isNotEmpty()) {
-            emit(ApiResponse.Success(response))
+            emit(Result.Success(response))
         } else {
-            emit(ApiResponse.Empty)
+            emit(Result.Empty)
         }
     }
 }

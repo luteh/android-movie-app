@@ -2,7 +2,7 @@ package com.luteh.discover.ui
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import androidx.lifecycle.Observer
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.data.remote.RemoteDataSource
 import com.luteh.core.data.remote.network.ApiService
 import com.luteh.core.domain.model.Discover
@@ -43,7 +43,7 @@ class DiscoverViewModelTest {
 
     private val apiService: ApiService = mock()
     private val repository: IMovieRepository = mock()
-    private val observer: Observer<Resource<Discover>> = mock()
+    private val observer: Observer<Result<Discover>> = mock()
 
     @Before
     fun setUp() {
@@ -56,7 +56,7 @@ class DiscoverViewModelTest {
         fun testGetMoviesDiscover() = runBlocking {
         // Given
         vm.withGenres = "28"
-        val mockData = flow { emit(Resource.Success(Discover(0, 0, 0, emptyList()))) }
+        val mockData = flow { emit(Result.Success(Discover(0, 0, 0, emptyList()))) }
         whenever(repository.getMovieDiscover(1, vm.withGenres)).thenReturn(mockData)
 
         // When

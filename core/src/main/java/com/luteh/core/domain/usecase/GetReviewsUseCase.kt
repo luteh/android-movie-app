@@ -1,6 +1,6 @@
 package com.luteh.core.domain.usecase
 
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.di.IoDispatcher
 import com.luteh.core.domain.model.moviedetail.Reviews
 import com.luteh.core.domain.repository.IMovieRepository
@@ -21,7 +21,7 @@ class GetReviewsUseCase @Inject constructor(
     private val repository: IMovieRepository,
     @IoDispatcher dispatcher: CoroutineDispatcher
 ) : FlowUseCase<GetReviewsUseCaseParams, Reviews>(dispatcher) {
-    override fun execute(parameters: GetReviewsUseCaseParams): Flow<Resource<Reviews>> {
+    override fun execute(parameters: GetReviewsUseCaseParams): Flow<Result<Reviews>> {
         val (movieId, page) = parameters
         return repository.getReviews(movieId, page)
     }

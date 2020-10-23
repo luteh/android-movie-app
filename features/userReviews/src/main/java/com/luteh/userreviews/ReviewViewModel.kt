@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.asLiveData
 import androidx.lifecycle.switchMap
 import com.luteh.core.common.base.BaseViewModel
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.moviedetail.Reviews
 import com.luteh.core.domain.usecase.GetReviewsUseCase
 import com.luteh.core.domain.usecase.GetReviewsUseCaseParams
@@ -22,7 +22,7 @@ class ReviewViewModel @ViewModelInject constructor(private val getReviewsUseCase
     var isLastItemReviews = false
 
     private val reviewsPage = MutableLiveData<Int>()
-    val reviews: LiveData<Resource<Reviews>>
+    val reviews: LiveData<Result<Reviews>>
 
     init {
         reviews = reviewsPage.switchMap {

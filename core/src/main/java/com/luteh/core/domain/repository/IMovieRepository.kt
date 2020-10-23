@@ -1,6 +1,6 @@
 package com.luteh.core.domain.repository
 
-import com.luteh.core.data.Resource
+import com.luteh.core.data.Result
 import com.luteh.core.domain.model.Discover
 import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.core.domain.model.moviedetail.Genre
@@ -14,16 +14,16 @@ import kotlinx.coroutines.flow.Flow
  */
 interface IMovieRepository {
     //region Remote Transaction
-    fun getMovieDiscover(page: Int, withGenres: String): Flow<Resource<Discover>>
-    fun getGenreList(): Flow<Resource<List<Genre>>>
-    fun getMovieDetail(movieId: Int): Flow<Resource<MovieDetail>>
-    fun getReviews(movieId: Int, page: Int): Flow<Resource<Reviews>>
+    fun getMovieDiscover(page: Int, withGenres: String): Flow<Result<Discover>>
+    fun getGenreList(): Flow<Result<List<Genre>>>
+    fun getMovieDetail(movieId: Int): Flow<Result<MovieDetail>>
+    fun getReviews(movieId: Int, page: Int): Flow<Result<Reviews>>
     //endregion
 
     //region Local Transaction
     suspend fun insertFavoriteMovie(movieDetail: MovieDetail)
-    fun getAllFavoriteMovies():Flow<Resource<List<MovieDiscover>>>
+    fun getAllFavoriteMovies():Flow<Result<List<MovieDiscover>>>
     suspend fun deleteFavoriteMovieById(movieId: Int)
-    fun getFavoriteMovieById(movieId: Int):Flow<Resource<Unit>>
+    fun getFavoriteMovieById(movieId: Int):Flow<Result<Unit>>
     //endregion
 }

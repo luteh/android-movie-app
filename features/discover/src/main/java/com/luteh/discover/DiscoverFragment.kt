@@ -12,11 +12,11 @@ import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.extensions.gone
 import com.luteh.core.common.extensions.shouldVisible
 import com.luteh.core.common.utils.EndlessScrollListener
-import com.luteh.core.data.Resource
 import com.luteh.discover.adapter.DiscoverAdapter
 import com.luteh.discover.databinding.FragmentDiscoverBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import com.luteh.core.data.Result
 
 /**
  * Created by Luthfan Maftuh on 9/6/2020.
@@ -73,23 +73,20 @@ class DiscoverFragment : BaseFragment() {
             Timber.d("$it")
 
             with(binding) {
-                vLoading.pbCommon.shouldVisible(it is Resource.Loading)
-                vLoading.tvRetry.shouldVisible(it is Resource.Error)
+                vLoading.pbCommon.shouldVisible(it is Result.Loading)
+                vLoading.tvRetry.shouldVisible(it is Result.Error)
 
                 when (it) {
-                    is Resource.Loading -> {
-                        Timber.d("Loading")
-                    }
-                    is Resource.Success -> {
+                    is Result.Success -> {
                         Timber.d("Success ${it.data}")
-                        it.data?.let {
+                        it.data.let {
                             adapter.setDataSource(it.results)
                             vm.isLastItemMovies = vm.currentPage > it.totalPages
                         }
                         com.luteh.core.common.utils.EspressoIdlingResource.decrement()
                     }
-                    is Resource.Error -> {
-                        Timber.e("Error ${it.message}")
+                    is Result.Error -> {
+                        Timber.d("Error ${it.throwable}")
                     }
                 }
             }

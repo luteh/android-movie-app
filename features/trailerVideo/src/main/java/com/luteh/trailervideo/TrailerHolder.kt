@@ -45,7 +45,7 @@ class TrailerHolder(private val binding: ItemTrailerBinding, private val callbac
 
                 container.isSelected = selectedPosition == adapterPosition
 
-                itemView.setOnClickListener { v ->
+                itemView.setOnClickListener { _ ->
                     if (!container.isSelected) {
                         callback.invoke(it, adapterPosition)
                     }

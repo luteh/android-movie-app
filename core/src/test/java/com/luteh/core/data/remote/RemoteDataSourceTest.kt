@@ -2,7 +2,6 @@ package com.luteh.core.data.remote
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
 import com.luteh.core.utils.MainCoroutinesRule
-import com.luteh.core.data.remote.network.ApiResponse
 import com.luteh.core.data.remote.network.ApiService
 import com.luteh.core.data.remote.response.discover.DiscoverResponse
 import com.nhaarman.mockitokotlin2.atLeastOnce
