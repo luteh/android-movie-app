@@ -39,4 +39,9 @@ interface ApiService {
         @Path("movie_id") movieId: Int,
         @Query("page") page: Int
     ): ReviewsResponse?
+
+    @GET("movie/{category}")
+    suspend fun getMoviesByCategory(
+        @Path("category") category: String
+    ): DiscoverResponse
 }

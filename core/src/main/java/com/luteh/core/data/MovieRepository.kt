@@ -9,7 +9,6 @@ import com.luteh.core.domain.model.moviedetail.MovieDetail
 import com.luteh.core.domain.model.moviedetail.Reviews
 import com.luteh.core.domain.repository.IMovieRepository
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.emitAll
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -43,7 +42,7 @@ class MovieRepository @Inject constructor(
                 emit(Result.Success(apiResponse.data.map { it.toDomain() }))
             }
             is Result.Empty -> {
-                emit(Result.Success<List<Genre>>(emptyList()))
+                emit(Result.Empty)
             }
         }
     }
@@ -71,6 +70,17 @@ class MovieRepository @Inject constructor(
             }
         }
     }
+
+    override fun getMoviesByCategory(category: String): Flow<Result<List<MovieDiscover>>> = flow {
+        emit(Result.Loading)
+        val response = remoteDataSource.getMoviesByCategory(category)
+        if (response.results.isNotEmpty()) {
+            emit(Result.Success(response.results.map { it.toDomain() }))
+        } else {
+            emit(Result.Empty)
+        }
+    }
+
     //endregion
 
     //region Local Transaction

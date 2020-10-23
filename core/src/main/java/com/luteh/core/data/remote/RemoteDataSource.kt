@@ -54,4 +54,6 @@ class RemoteDataSource @Inject constructor(private val apiService: ApiService) {
             emit(Result.Empty)
         }
     }
+
+    suspend fun getMoviesByCategory(category: String) = apiService.getMoviesByCategory(category)
 }

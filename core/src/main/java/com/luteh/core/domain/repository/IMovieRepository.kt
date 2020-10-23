@@ -18,12 +18,13 @@ interface IMovieRepository {
     fun getGenreList(): Flow<Result<List<Genre>>>
     fun getMovieDetail(movieId: Int): Flow<Result<MovieDetail>>
     fun getReviews(movieId: Int, page: Int): Flow<Result<Reviews>>
+    fun getMoviesByCategory(category: String): Flow<Result<List<MovieDiscover>>>
     //endregion
 
     //region Local Transaction
     suspend fun insertFavoriteMovie(movieDetail: MovieDetail)
-    fun getAllFavoriteMovies():Flow<Result<List<MovieDiscover>>>
+    fun getAllFavoriteMovies(): Flow<Result<List<MovieDiscover>>>
     suspend fun deleteFavoriteMovieById(movieId: Int)
-    fun getFavoriteMovieById(movieId: Int):Flow<Result<Unit>>
+    fun getFavoriteMovieById(movieId: Int): Flow<Result<Unit>>
     //endregion
 }
