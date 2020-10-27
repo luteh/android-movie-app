@@ -11,6 +11,8 @@ import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.extensions.observe
 import com.luteh.main.R
 import com.luteh.main.databinding.FragmentHomeBinding
+import com.luteh.main.home.adapter.HomeAdapter
+import com.luteh.main.home.adapter.HomeType
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -26,6 +28,8 @@ class HomeFragment : BaseFragment() {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
+    private val adapter = HomeAdapter()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -36,12 +40,20 @@ class HomeFragment : BaseFragment() {
     }
 
     override fun onInit(savedInstanceState: Bundle?) {
-        initListener()
+        initRecyclerView()
         initViewModel()
+        initListener()
+    }
+
+    private fun initRecyclerView() {
+        binding.rv.apply {
+            adapter = this@HomeFragment.adapter
+        }
     }
 
     private fun initViewModel() {
         observe(vm.moviesNowPlayingLiveData) {
+            adapter.setDataSources(HomeType.HEADER, it)
             Timber.d("$it")
         }
 
@@ -49,10 +61,10 @@ class HomeFragment : BaseFragment() {
     }
 
     private fun initListener() {
-        binding.tv.setOnClickListener {
-            (parentFragment as NavHostFragment).parentFragment?.findNavController()
-                ?.navigate(R.id.action_mainFragment_to_officialGenreFragment)
-        }
+//        binding.tv.setOnClickListener {
+//            (parentFragment as NavHostFragment).parentFragment?.findNavController()
+//                ?.navigate(R.id.action_mainFragment_to_officialGenreFragment)
+//        }
     }
 
     override fun onDestroyView() {

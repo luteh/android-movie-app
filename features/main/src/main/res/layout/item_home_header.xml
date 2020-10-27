@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:cardCornerRadius="@dimen/corner_medium">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_backdrop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="16:9"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/layout_gradient"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:foreground="@drawable/gradient_grey_transparent"
+            app:layout_constraintBottom_toBottomOf="@id/iv_backdrop"
+            app:layout_constraintEnd_toEndOf="@id/iv_backdrop"
+            app:layout_constraintStart_toStartOf="@id/iv_backdrop"
+            app:layout_constraintTop_toTopOf="@id/iv_backdrop" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/tv_title"
+            style="@style/TextSubTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/spacing_medium__"
+            android:layout_marginBottom="@dimen/spacing_medium"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textColor="@color/grey_3"
+            app:layout_constraintBottom_toBottomOf="@id/iv_backdrop"
+            tools:text="@string/short_lorem_ipsum" />
+
+        <include
+            android:id="@+id/v_loading"
+            layout="@layout/common_loading"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="@id/iv_backdrop"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/iv_backdrop" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

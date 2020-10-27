@@ -18,4 +18,10 @@
     <dimen name="corner_medium">8dp</dimen>
     <dimen name="header_content_default">250dp</dimen>
     <dimen name="elevation_medium">8dp</dimen>
+
+    <dimen name="indicator_xsmall">2dp</dimen>
+    <dimen name="indicator_small">4dp</dimen>
+    <dimen name="indicator_medium">8dp</dimen>
+
+    <dimen name="indicator_width">12dp</dimen>
 </resources>

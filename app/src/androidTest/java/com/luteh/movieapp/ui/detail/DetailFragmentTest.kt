@@ -46,7 +46,7 @@ class DetailFragmentTest {
         }
 
         onView(withId(R.id.tv_detail_title)).check(matches(isDisplayed()))
-        onView(withId(R.id.iv_poster)).check(matches(isDisplayed()))
+        onView(withId(R.id.iv_backdrop)).check(matches(isDisplayed()))
     }
 
     @Test
