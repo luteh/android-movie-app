@@ -10,6 +10,7 @@ import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.core.domain.usecase.Category
 import com.luteh.core.domain.usecase.GetMoviesByCategoryUseCase
 import com.luteh.core.domain.usecase.GetMoviesByCategoryUseCaseParams
+import com.luteh.main.home.adapter.HomeItem
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -29,6 +30,12 @@ class HomeViewModel @ViewModelInject constructor(private val getMoviesByCategory
 
     private val _moviesTopRatedLiveData = MutableLiveData<Result<List<MovieDiscover>>>()
     val moviesTopRatedLiveData: LiveData<Result<List<MovieDiscover>>> = _moviesTopRatedLiveData
+
+    fun onInitViewModel() {
+        getMoviesByNowPlaying()
+        getMoviesByPopular()
+        getMoviesByTopRated()
+    }
 
     fun getMoviesByNowPlaying() {
         viewModelScope.launch {
@@ -50,6 +57,20 @@ class HomeViewModel @ViewModelInject constructor(private val getMoviesByCategory
         viewModelScope.launch {
             getMoviesByCategoryUseCase(GetMoviesByCategoryUseCaseParams(Category.TOP_RATED)).collect {
                 _moviesTopRatedLiveData.value = it
+            }
+        }
+    }
+
+    fun reloadItemData(homeItem: HomeItem) {
+        when (homeItem) {
+            HomeItem.NOW_PLAYING -> {
+                getMoviesByNowPlaying()
+            }
+            HomeItem.POPULAR -> {
+                getMoviesByPopular()
+            }
+            HomeItem.TOP_RATED -> {
+                getMoviesByTopRated()
             }
         }
     }

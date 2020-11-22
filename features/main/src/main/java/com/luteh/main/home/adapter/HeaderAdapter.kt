@@ -5,14 +5,15 @@ import android.view.ViewGroup
 import com.luteh.core.common.base.BaseAdapter
 import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.main.databinding.ItemHomeHeaderBinding
+import com.luteh.main.home.HomeItemCallback
 
 /**
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
-class HeaderAdapter : BaseAdapter<HeaderHolder, MovieDiscover>() {
+class HeaderAdapter(private val callback: HomeItemCallback) : BaseAdapter<HeaderHolder, MovieDiscover>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HeaderHolder {
-        return HeaderHolder(ItemHomeHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false))
+        return HeaderHolder(ItemHomeHeaderBinding.inflate(LayoutInflater.from(parent.context), parent, false), callback)
     }
 
     override fun onBindViewHolder(holder: HeaderHolder, position: Int) {

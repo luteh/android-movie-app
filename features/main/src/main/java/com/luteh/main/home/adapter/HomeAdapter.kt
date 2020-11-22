@@ -7,6 +7,7 @@ import com.luteh.core.data.Result
 import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.main.databinding.ViewHomeContentBinding
 import com.luteh.main.databinding.ViewHomeHeaderBinding
+import com.luteh.main.home.HomeItemCallback
 
 /**
  * Created by Luthfan Maftuh
@@ -16,9 +17,14 @@ enum class HomeType(val index: Int) {
     HEADER(0), CONTENT(1)
 }
 
-class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+enum class HomeItem(val index: Int) {
+    NOW_PLAYING(0), POPULAR(1), TOP_RATED(2)
+}
 
-    private val dataMaps = mutableMapOf<String, Result<List<MovieDiscover>>>()
+class HomeAdapter(private val callback: HomeItemCallback) :
+    RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    private val dataMaps = mutableMapOf<Int, Result<List<MovieDiscover>>>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return when (viewType) {
@@ -28,14 +34,12 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    callback
                 )
             }
-            HomeType.CONTENT.index -> {
-                ContentHolder(ViewHomeContentBinding.inflate(LayoutInflater.from(parent.context)))
-            }
             else -> {
-                ContentHolder(ViewHomeContentBinding.inflate(LayoutInflater.from(parent.context)))
+                HomeContentHolder(ViewHomeContentBinding.inflate(LayoutInflater.from(parent.context)), callback)
             }
         }
     }
@@ -43,22 +47,22 @@ class HomeAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (getItemViewType(position)) {
             HomeType.HEADER.index -> {
-                (holder as HomeHeaderHolder).bindTo(dataMaps[HomeType.HEADER.name])
+                (holder as HomeHeaderHolder).bindTo(dataMaps[position])
             }
-            HomeType.CONTENT.index -> {
-                (holder as ContentHolder).bindTo(dataMaps[HomeType.CONTENT.name])
+            else -> {
+                (holder as HomeContentHolder).bindTo(dataMaps[position])
             }
         }
     }
 
-    override fun getItemCount(): Int = HomeType.values().size
+    override fun getItemCount(): Int = HomeItem.values().size
 
     override fun getItemViewType(position: Int): Int {
-        return position
+        return if (position == 0) HomeType.HEADER.index else HomeType.CONTENT.index
     }
 
-    fun setDataSources(homeType: HomeType, data: Result<List<MovieDiscover>>) {
-        dataMaps[homeType.name] = data
-        notifyItemChanged(homeType.index)
+    fun setDataSources(homeItem: HomeItem, data: Result<List<MovieDiscover>>) {
+        dataMaps[homeItem.index] = data
+        notifyItemChanged(homeItem.index)
     }
 }

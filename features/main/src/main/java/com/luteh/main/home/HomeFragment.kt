@@ -9,10 +9,10 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.extensions.observe
-import com.luteh.main.R
+import com.luteh.main.MainFragmentDirections
 import com.luteh.main.databinding.FragmentHomeBinding
 import com.luteh.main.home.adapter.HomeAdapter
-import com.luteh.main.home.adapter.HomeType
+import com.luteh.main.home.adapter.HomeItem
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 
@@ -20,15 +20,21 @@ import timber.log.Timber
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
+
+interface HomeItemCallback {
+    fun navigateToDetailScreen(movieId: Int)
+    fun reloadItemData(homeItem: HomeItem)
+}
+
 @AndroidEntryPoint
-class HomeFragment : BaseFragment() {
+class HomeFragment : BaseFragment(), HomeItemCallback {
 
     private val vm: HomeViewModel by viewModels()
 
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val adapter = HomeAdapter()
+    private val adapter = HomeAdapter(this)
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -53,18 +59,33 @@ class HomeFragment : BaseFragment() {
 
     private fun initViewModel() {
         observe(vm.moviesNowPlayingLiveData) {
-            adapter.setDataSources(HomeType.HEADER, it)
+            adapter.setDataSources(HomeItem.NOW_PLAYING, it)
             Timber.d("$it")
         }
 
-        vm.getMoviesByNowPlaying()
+        observe(vm.moviesPopularLiveData) {
+            adapter.setDataSources(HomeItem.POPULAR, it)
+            Timber.d("$it")
+        }
+
+        observe(vm.moviesTopRatedLiveData) {
+            adapter.setDataSources(HomeItem.TOP_RATED, it)
+            Timber.d("$it")
+        }
+
+        vm.onInitViewModel()
     }
 
     private fun initListener() {
-//        binding.tv.setOnClickListener {
-//            (parentFragment as NavHostFragment).parentFragment?.findNavController()
-//                ?.navigate(R.id.action_mainFragment_to_officialGenreFragment)
-//        }
+    }
+
+    override fun navigateToDetailScreen(movieId: Int) {
+        val action = MainFragmentDirections.actionMainFragmentToDetailFragment(movieId)
+        (parentFragment as NavHostFragment).parentFragment?.findNavController()?.navigate(action)
+    }
+
+    override fun reloadItemData(homeItem: HomeItem) {
+        vm.reloadItemData(homeItem)
     }
 
     override fun onDestroyView() {
