@@ -58,6 +58,7 @@ class HomeFragment : BaseFragment(), HomeItemCallback {
     }
 
     private fun initViewModel() {
+        // Header Banner
         observe(vm.moviesNowPlayingLiveData) {
             adapter.setDataSources(HomeItem.NOW_PLAYING, it)
             Timber.d("$it")

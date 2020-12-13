@@ -50,6 +50,9 @@ dependencies {
     implementation "com.github.bumptech.glide:glide:$versions.glide"
     kapt "com.github.bumptech.glide:compiler:$versions.glide"
 
+    // page indicator view
+    implementation "com.romandanylyk:pageindicatorview:${versions.pageIndicatorView}"
+
     // debugging
     implementation "com.jakewharton.timber:timber:$versions.timber"
 

@@ -14,16 +14,20 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_indicator"
+    <com.rd.PageIndicatorView
+        android:id="@+id/indicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/spacing_medium__"
+        android:layout_marginTop="@dimen/spacing_medium"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vp_header"
-        app:tabBackground="@drawable/selector_indicator"
-        app:tabIndicatorHeight="0dp"
-        app:tabMaxWidth="@dimen/indicator_width" />
+        app:piv_animationType="worm"
+        app:piv_dynamicCount="true"
+        app:piv_interactiveAnimation="true"
+        app:piv_radius="4dp"
+        app:piv_selectedColor="@color/colorPrimary"
+        app:piv_unselectedColor="@color/grey_20" />
 
     <include
         android:id="@+id/v_loading"

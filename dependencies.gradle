@@ -1,6 +1,6 @@
 ext.versions = [
         // kotlin
-        kotlin           : '1.4.0',
+        kotlin           : '1.4.20',
 
         // build gradle
         buildGradle      : '4.1.0',
@@ -36,6 +36,9 @@ ext.versions = [
 
         // glide
         glide            : '4.11.0',
+
+        // page indicator
+        pageIndicatorView: '1.0.3',
 
         // debugging
         timber           : '4.7.1',
