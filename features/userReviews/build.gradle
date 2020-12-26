@@ -1,2 +1,0 @@
-apply from: '../../common-features-dependencies.gradle'
-apply from: '../../common-android-config.gradle'

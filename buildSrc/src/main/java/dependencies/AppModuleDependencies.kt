@@ -10,6 +10,11 @@ internal fun Project.configureAppDependencies() = dependencies {
     )
     add(ConfigurationType.IMPLEMENTATION, project(Modules.core))
     add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.main))
+    add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.userReviews))
+    add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.trailerVideo))
+    add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.genres))
+    add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.discover))
+    add(ConfigurationType.IMPLEMENTATION, project(Modules.Features.detail))
 
     add(ConfigurationType.IMPLEMENTATION, Libs.Kotlin.kotlinStdlib)
     Libs.Support.implementation.forEach { add(ConfigurationType.IMPLEMENTATION, it) }
