@@ -1,9 +1,0 @@
-include ':features:main'
-rootProject.name = "Movie App"
-include ':app'
-include ':core'
-include ':features:userReviews'
-include ':features:trailerVideo'
-include ':features:discover'
-include ':features:genres'
-include ':features:detail'
