@@ -1,15 +1,14 @@
 package com.luteh.main.home
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
 import com.luteh.core.common.base.BaseFragment
+import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.observe
 import com.luteh.main.MainFragmentDirections
+import com.luteh.main.R
 import com.luteh.main.databinding.FragmentHomeBinding
 import com.luteh.main.home.adapter.HomeAdapter
 import com.luteh.main.home.adapter.HomeItem
@@ -27,23 +26,12 @@ interface HomeItemCallback {
 }
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment(), HomeItemCallback {
+class HomeFragment : BaseFragment(R.layout.fragment_home), HomeItemCallback {
 
     private val vm: HomeViewModel by viewModels()
-
-    private var _binding: FragmentHomeBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentHomeBinding by viewBinding()
 
     private val adapter = HomeAdapter(this)
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentHomeBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onInit(savedInstanceState: Bundle?) {
         initRecyclerView()
@@ -87,10 +75,5 @@ class HomeFragment : BaseFragment(), HomeItemCallback {
 
     override fun reloadItemData(homeItem: HomeItem) {
         vm.reloadItemData(homeItem)
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

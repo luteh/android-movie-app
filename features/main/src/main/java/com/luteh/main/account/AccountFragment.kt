@@ -1,36 +1,20 @@
 package com.luteh.main.account
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import com.luteh.core.common.base.BaseFragment
+import com.luteh.core.common.delegates.viewBinding
+import com.luteh.main.R
 import com.luteh.main.databinding.FragmentAccountBinding
 
 /**
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
-class AccountFragment : BaseFragment() {
+class AccountFragment : BaseFragment(R.layout.fragment_account) {
 
-    private var _binding: FragmentAccountBinding? = null
-    private val binding get() = _binding!!
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        _binding = FragmentAccountBinding.inflate(inflater, container, false)
-        return binding.root
-    }
+    private val binding: FragmentAccountBinding by viewBinding()
 
     override fun onInit(savedInstanceState: Bundle?) {
 
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
     }
 }

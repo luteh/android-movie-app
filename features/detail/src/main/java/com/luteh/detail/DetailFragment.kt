@@ -9,6 +9,7 @@ import androidx.navigation.fragment.navArgs
 import com.luteh.core.BuildConfig
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.constants.ActionConstants
+import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.*
 import com.luteh.core.common.utils.EspressoIdlingResource
 import com.luteh.core.data.Result
@@ -24,11 +25,11 @@ import timber.log.Timber
  * Email : luthfanmaftuh@gmail.com
  */
 @AndroidEntryPoint
-class DetailFragment : BaseFragment() {
+class DetailFragment : BaseFragment(R.layout.fragment_detail) {
 
     private val args: DetailFragmentArgs by navArgs()
     private val vm: DetailViewModel by viewModels()
-    private lateinit var binding: FragmentDetailBinding
+    private val binding: FragmentDetailBinding by viewBinding()
 
     private val genreAdapter = DetailGenreAdapter()
     private val headerAdapter = DetailHeaderAdapter()
@@ -39,15 +40,6 @@ class DetailFragment : BaseFragment() {
         super.onCreate(savedInstanceState)
 
         setHasOptionsMenu(true)
-    }
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDetailBinding.inflate(inflater, container, false)
-        return binding.root
     }
 
     override fun onInit(savedInstanceState: Bundle?) {
