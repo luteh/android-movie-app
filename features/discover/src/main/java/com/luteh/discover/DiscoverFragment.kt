@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.luteh.core.R
 import com.luteh.core.common.base.BaseFragment
+import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.gone
 import com.luteh.core.common.extensions.shouldVisible
 import com.luteh.core.common.utils.EndlessScrollListener
@@ -23,22 +24,12 @@ import com.luteh.core.data.Result
  * Email : luthfanmaftuh@gmail.com
  */
 @AndroidEntryPoint
-class DiscoverFragment : BaseFragment() {
+class DiscoverFragment : BaseFragment(com.luteh.discover.R.layout.fragment_discover) {
     private val args: DiscoverFragmentArgs by navArgs()
     private val vm: DiscoverViewModel by viewModels()
-
-    private lateinit var binding: FragmentDiscoverBinding
+    private val binding: FragmentDiscoverBinding by viewBinding()
 
     private val adapter = DiscoverAdapter()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentDiscoverBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onInit(savedInstanceState: Bundle?) {
         initActionBar(binding.toolbar.toolbarCommon, true, getString(R.string.title_discover))

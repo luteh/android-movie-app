@@ -11,6 +11,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.luteh.core.R
 import com.luteh.core.common.base.BaseFragment
+import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.gone
 import com.luteh.core.common.extensions.observe
 import com.luteh.core.common.extensions.shouldVisible
@@ -26,21 +27,12 @@ import timber.log.Timber
  * Email : luthfanmaftuh@gmail.com
  */
 @AndroidEntryPoint
-class ReviewFragment : BaseFragment() {
+class ReviewFragment : BaseFragment(com.luteh.userreviews.R.layout.fragment_review) {
 
     private val args: ReviewFragmentArgs by navArgs()
     private val vm: ReviewViewModel by viewModels()
-    private lateinit var binding: FragmentReviewBinding
+    private val binding: FragmentReviewBinding by viewBinding()
     private val adapter = ReviewAdapter()
-
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentReviewBinding.inflate(inflater, container, false)
-        return binding.root
-    }
 
     override fun onInit(savedInstanceState: Bundle?) {
         initActionBar(binding.toolbar.toolbarCommon, true, getString(R.string.title_user_reviews))

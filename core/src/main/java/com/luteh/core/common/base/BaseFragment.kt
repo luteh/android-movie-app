@@ -2,6 +2,7 @@ package com.luteh.core.common.base
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.LayoutRes
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
 import com.luteh.core.R
@@ -10,7 +11,7 @@ import com.luteh.core.R
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment constructor(@LayoutRes contentLayoutId: Int) : Fragment(contentLayoutId) {
 
     val baseActivity: BaseActivity get() = activity as BaseActivity
 

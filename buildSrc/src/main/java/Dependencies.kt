@@ -25,8 +25,9 @@ object Libs {
         const val viewmodelKtx = "androidx.lifecycle:lifecycle-viewmodel-ktx:${Versions.lifecycle}"
         const val viewmodelSavedState =
             "androidx.lifecycle:lifecycle-viewmodel-savedstate:${Versions.lifecycle}"
+        const val commonJava8 = "androidx.lifecycle:lifecycle-common-java8:${Versions.lifecycle}"
 
-        val implementation = arrayOf(extensions, livedataKtx, viewmodelKtx, viewmodelSavedState)
+        val implementation = arrayOf(extensions, livedataKtx, viewmodelKtx, viewmodelSavedState, commonJava8)
     }
 
     object Room {

@@ -9,6 +9,7 @@ import com.google.android.youtube.player.YouTubePlayer
 import com.luteh.core.BuildConfig
 import com.luteh.core.R
 import com.luteh.core.common.constants.ActionConstants
+import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.gone
 import com.luteh.core.common.extensions.shouldVisible
 import com.luteh.trailervideo.databinding.ActivityTrailerBinding
@@ -17,7 +18,7 @@ import timber.log.Timber
 
 class TrailerActivity : YouTubeBaseActivity() {
 
-    private lateinit var binding: ActivityTrailerBinding
+    private val binding: ActivityTrailerBinding by viewBinding()
     private var trailerVideos: List<VideoResult>? = null
     private val adapter = TrailerAdapter { videoResult, position ->
         onClickTrailerItem(videoResult, position)
@@ -27,8 +28,6 @@ class TrailerActivity : YouTubeBaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityTrailerBinding.inflate(layoutInflater)
-        setContentView(binding.root)
 
         onInit()
     }
