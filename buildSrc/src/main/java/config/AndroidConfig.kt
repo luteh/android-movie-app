@@ -1,13 +1,13 @@
 package config
 
-import org.gradle.api.JavaVersion
-import org.gradle.api.Project
-import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.CategoryFilter.exclude
-import org.gradle.kotlin.dsl.configure
-import org.gradle.kotlin.dsl.getByType
+import Configs
 import com.android.build.gradle.AppExtension
 import com.android.build.gradle.LibraryExtension
 import com.android.build.gradle.internal.dsl.DefaultConfig
+import org.gradle.api.JavaVersion
+import org.gradle.api.Project
+import org.gradle.kotlin.dsl.configure
+import org.gradle.kotlin.dsl.getByType
 import org.jetbrains.kotlin.gradle.internal.AndroidExtensionsExtension
 import java.io.FileInputStream
 import java.util.*
@@ -28,8 +28,8 @@ internal fun Project.configureAndroid() = this.extensions.getByType<AppExtension
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+            isMinifyEnabled = false
+            isShrinkResources = false
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -79,7 +79,7 @@ internal fun Project.configureLibraryAndroid(buildConfigCallback: (DefaultConfig
 
         buildTypes {
             getByName("release") {
-                isMinifyEnabled = true
+                isMinifyEnabled = false
                 proguardFiles(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
