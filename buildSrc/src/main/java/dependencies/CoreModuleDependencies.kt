@@ -14,8 +14,8 @@ internal fun Project.configureCoreDependencies() = dependencies {
 
     Libs.Lifecycle.implementation.forEach { add(ConfigurationType.IMPLEMENTATION, it) }
 
-    Libs.Room.implementation.forEach { add(ConfigurationType.IMPLEMENTATION, it) }
-    Libs.Room.kapt.forEach { add(ConfigurationType.KAPT, it) }
+    Libs.LocalStorage.implementation.forEach { add(ConfigurationType.IMPLEMENTATION, it) }
+    Libs.LocalStorage.kapt.forEach { add(ConfigurationType.KAPT, it) }
 
     Libs.Navigation.implementation.forEach { add(ConfigurationType.IMPLEMENTATION, it) }
 

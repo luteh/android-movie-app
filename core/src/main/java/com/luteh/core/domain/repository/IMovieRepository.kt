@@ -26,5 +26,8 @@ interface IMovieRepository {
     fun getAllFavoriteMovies(): Flow<Result<List<MovieDiscover>>>
     suspend fun deleteFavoriteMovieById(movieId: Int)
     fun getFavoriteMovieById(movieId: Int): Flow<Result<Unit>>
+
+    fun isLoggedIn(): Flow<Result<Boolean>>
+    suspend fun setIsLoggedIn(value: Boolean)
     //endregion
 }

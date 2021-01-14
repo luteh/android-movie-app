@@ -30,12 +30,13 @@ object Libs {
         val implementation = arrayOf(extensions, livedataKtx, viewmodelKtx, viewmodelSavedState, commonJava8)
     }
 
-    object Room {
+    object LocalStorage {
         const val roomRuntime = "androidx.room:room-runtime:${Versions.room}"
         const val roomKtx = "androidx.room:room-ktx:${Versions.room}"
         const val roomCompiler = "androidx.room:room-compiler:${Versions.room}"
+        const val dataStore = "androidx.datastore:datastore-preferences:${Versions.dataStore}"
 
-        val implementation = arrayOf(roomRuntime, roomKtx)
+        val implementation = arrayOf(roomRuntime, roomKtx, dataStore)
         val kapt = arrayOf(roomCompiler)
     }
 
@@ -149,6 +150,7 @@ object Versions {
     const val fragment = "1.2.5"
     const val lifecycle = "2.2.0"
     const val room = "2.2.5"
+    const val dataStore = "1.0.0-alpha05"
     const val archCompoment = "2.1.0"
     const val navigation = "2.3.0"
 

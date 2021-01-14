@@ -111,5 +111,10 @@ class MovieRepository @Inject constructor(
         }
     }
 
+    override fun isLoggedIn(): Flow<Result<Boolean>> = localDataSource.isLoggedIn()
+
+    override suspend fun setIsLoggedIn(value: Boolean) {
+        localDataSource.setIsLoggedIn(value)
+    }
     //endregion
 }
