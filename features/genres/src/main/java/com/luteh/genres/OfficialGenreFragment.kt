@@ -1,9 +1,6 @@
 package com.luteh.genres
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.LinearLayout
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -56,6 +53,7 @@ class OfficialGenreFragment : BaseFragment(R.layout.fragment_official_genre) {
                     vm.isDataFetched = true
                     EspressoIdlingResource.decrement()
                 }
+                else ->{}
             }
         }
 
