@@ -9,11 +9,14 @@ jobs:
     # You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
     # Be sure to update the docker image tag below to android api version of your application.
     docker:
-      - image: circleci/android:api-30
+      - image: circleci/android:api-28
     steps:
       # Checkout the code as the first step.
       - checkout
       # The next step will download the dependencies.
+      - run:
+          name: Make gradlew executable
+          command: chmod +x ./gradlew
       - run:
           name: Download Dependencies
           command: ./gradlew androidDependencies
