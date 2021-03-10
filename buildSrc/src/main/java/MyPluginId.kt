@@ -8,8 +8,4 @@ object MyPluginId {
     const val daggerHilt = "dagger.hilt.android.plugin"
     const val navigationSafeargs = "androidx.navigation.safeargs.kotlin"
     const val myDependenciesPlugin = "com.luteh.gradle.dependencies-plugin"
-
-    const val movieApp = "movie-app"
-    const val movieCore = "movie-core"
-    const val movieFeature = "movie-feature"
 }
