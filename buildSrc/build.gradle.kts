@@ -1,23 +1,32 @@
 plugins {
     `kotlin-dsl`
+    `java-gradle-plugin`
 }
-// Required since Gradle 4.10+.
+
 repositories {
     mavenCentral()
-    google()
-    jcenter()
 }
 
 dependencies {
-    /* Example Dependency */
-    /* Depend on the android gradle plugin, since we want to access it in our plugin */
-    implementation("com.android.tools.build:gradle:4.1.1")
-
-    /* Example Dependency */
-    /* Depend on the kotlin plugin, since we want to access it in our plugin */
-    implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:1.4.20")
-
-    /* Depend on the default Gradle API's since we want to build a custom plugin */
-    implementation(gradleApi())
-    implementation(localGroovy())
+    implementation(kotlin("stdlib-jdk8"))
+    compileOnly(gradleApi())
 }
+
+tasks {
+    compileKotlin { kotlinOptions.jvmTarget = "1.8" }
+}
+
+gradlePlugin {
+    (plugins) {
+        register("buildSrc") {
+
+            id = "com.luteh.gradle.dependencies-plugin"
+
+            implementationClass = "plugin.MyDependencyPlugin"
+
+        }
+
+    }
+
+}
+

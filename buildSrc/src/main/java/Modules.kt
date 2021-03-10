@@ -11,4 +11,14 @@ object Modules {
         const val genres = "$feature:genres"
         const val detail = "$feature:detail"
     }
+
+    val implementation = arrayOf(
+        core,
+        Features.main,
+        Features.detail,
+        Features.userReviews,
+        Features.trailerVideo,
+        Features.genres,
+        Features.discover
+    )
 }

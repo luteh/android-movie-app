@@ -3,12 +3,12 @@ package config
 import org.gradle.api.Project
 
 internal fun Project.configureAppPlugin() = with(plugins) {
-    apply(Plugins.androidApplication)
-    apply(Plugins.daggerHilt)
+    apply(MyPluginId.androidApplication)
+    apply(MyPluginId.daggerHilt)
 }
 
 
 internal fun Project.configureLibraryPlugin() = with(plugins) {
-    apply(Plugins.androidLibrary)
-    apply(Plugins.daggerHilt)
+    apply(MyPluginId.androidLibrary)
+    apply(MyPluginId.daggerHilt)
 }
