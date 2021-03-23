@@ -49,6 +49,10 @@ android {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
@@ -76,4 +80,6 @@ dependencies {
             it
         )
     }
+
+    implementation("androidx.webkit:webkit:1.4.0")
 }
