@@ -1,6 +1,5 @@
-package com.luteh.movieapp.presentation.keycloak
+package com.luteh.iam.presentation.keycloak
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.webkit.*
@@ -9,10 +8,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.delegates.viewBinding
+import com.luteh.core.common.extensions.Features
+import com.luteh.core.common.extensions.navigateTo
 import com.luteh.core.data.Result
-import com.luteh.main.MainActivity
-import com.luteh.movieapp.R
-import com.luteh.movieapp.databinding.FragmentKeycloakBinding
+import com.luteh.iam.R
+import com.luteh.iam.databinding.FragmentKeycloakBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
 import java.util.*
@@ -99,7 +99,7 @@ class KeycloakFragment : BaseFragment(R.layout.fragment_keycloak) {
     }
 
     private fun navigateToMainScreen() {
-        startActivity(Intent(requireContext(), MainActivity::class.java))
+        navigateTo(Features.MAIN)
         requireActivity().finish()
     }
 

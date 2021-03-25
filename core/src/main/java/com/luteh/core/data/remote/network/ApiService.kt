@@ -1,17 +1,17 @@
 package com.luteh.core.data.remote.network
 
 import com.luteh.core.data.remote.response.GenreResponse
-import com.luteh.core.data.remote.response.KeycloackTokenResponse
 import com.luteh.core.data.remote.response.discover.DiscoverResponse
 import com.luteh.core.data.remote.response.moviedetail.MovieDetailResponse
 import com.luteh.core.data.remote.response.moviedetail.ReviewsResponse
-import retrofit2.http.*
+import retrofit2.http.GET
+import retrofit2.http.Path
+import retrofit2.http.Query
 
 /**
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
-
 
 interface ApiService {
     companion object {
@@ -43,14 +43,4 @@ interface ApiService {
     suspend fun getMoviesByCategory(
         @Path("category") category: String
     ): DiscoverResponse
-
-    @POST("realms/myrealm/protocol/openid-connect/token")
-    @FormUrlEncoded
-    suspend fun obtainKeycloackToken(
-        @Field("client_id") clientId: String,
-        @Field("client_secret") clientSecret: String,
-        @Field("grant_type") grantType: String = "authorization_code",
-        @Field("code") code: String,
-        @Field("redirect_uri") redirectUri: String
-    ): KeycloackTokenResponse?
 }

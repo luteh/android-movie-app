@@ -1,4 +1,4 @@
-package com.luteh.movieapp.presentation.keycloak
+package com.luteh.iam.presentation.keycloak
 
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
@@ -6,9 +6,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.luteh.core.common.base.BaseViewModel
 import com.luteh.core.data.Result
-import com.luteh.core.domain.model.KeycloakToken
-import com.luteh.core.domain.usecase.ObtainKeycloakTokenUseCase
-import com.luteh.core.domain.usecase.ObtainKeycloakTokenUseCaseParams
+import com.luteh.iam.domain.model.KeycloakToken
+import com.luteh.iam.domain.usecase.ObtainKeycloakTokenUseCase
+import com.luteh.iam.domain.usecase.ObtainKeycloakTokenUseCaseParams
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import timber.log.Timber

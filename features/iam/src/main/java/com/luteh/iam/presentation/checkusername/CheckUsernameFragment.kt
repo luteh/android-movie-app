@@ -1,12 +1,12 @@
-package com.luteh.movieapp.presentation.checkusername
+package com.luteh.iam.presentation.checkusername
 
 import android.os.Bundle
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.delegates.viewBinding
-import com.luteh.movieapp.R
-import com.luteh.movieapp.databinding.FragmentCheckUsernameBinding
+import com.luteh.iam.R
+import com.luteh.iam.databinding.FragmentCheckUsernameBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

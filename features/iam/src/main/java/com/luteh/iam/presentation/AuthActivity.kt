@@ -1,9 +1,9 @@
-package com.luteh.movieapp.presentation
+package com.luteh.iam.presentation
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.luteh.core.common.delegates.viewBinding
-import com.luteh.movieapp.databinding.ActivityAuthBinding
+import com.luteh.iam.databinding.ActivityAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

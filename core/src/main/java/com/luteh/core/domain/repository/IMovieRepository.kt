@@ -2,7 +2,6 @@ package com.luteh.core.domain.repository
 
 import com.luteh.core.data.Result
 import com.luteh.core.domain.model.Discover
-import com.luteh.core.domain.model.KeycloakToken
 import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.core.domain.model.moviedetail.MovieDetail
@@ -20,12 +19,6 @@ interface IMovieRepository {
     fun getMovieDetail(movieId: Int): Flow<Result<MovieDetail>>
     fun getReviews(movieId: Int, page: Int): Flow<Result<Reviews>>
     fun getMoviesByCategory(category: String): Flow<Result<List<MovieDiscover>>>
-
-    fun obtainKeycloakToken(
-        clientId: String,
-        redirectUri: String,
-        code: String
-    ): Flow<Result<KeycloakToken>>
     //endregion
 
     //region Local Transaction
