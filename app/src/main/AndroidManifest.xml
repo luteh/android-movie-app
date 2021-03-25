@@ -24,7 +24,7 @@
         </activity>
 
         <activity
-            android:name="com.luteh.movieapp.PracticeActivity"
+            android:name="com.luteh.movieapp.presentation.AuthActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

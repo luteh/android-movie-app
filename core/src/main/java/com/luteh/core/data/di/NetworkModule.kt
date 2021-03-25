@@ -2,6 +2,10 @@ package com.luteh.core.data.di
 
 import com.luteh.core.BuildConfig
 import com.luteh.core.data.remote.network.ApiService
+import com.luteh.core.di.KeycloakApiService
+import com.luteh.core.di.KeycloakOkHttpClient
+import com.luteh.core.di.MovieApiService
+import com.luteh.core.di.MovieOkHttpClient
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -17,10 +21,12 @@ import java.util.concurrent.TimeUnit
  * Created by Luthfan Maftuh
  * Email : luthfanmaftuh@gmail.com
  */
+
 @Module
 @InstallIn(ApplicationComponent::class)
-class NetworkModule {
+object NetworkModule {
 
+    @MovieOkHttpClient
     @Provides
     fun provideOkHttpClient(): OkHttpClient {
         val requestInterceptor = Interceptor { chain ->
@@ -45,10 +51,32 @@ class NetworkModule {
             .build()
     }
 
+    @KeycloakOkHttpClient
     @Provides
-    fun provideApiService(client: OkHttpClient): ApiService {
+    fun provideKeycloakOkHttpClient(): OkHttpClient {
+        return OkHttpClient.Builder()
+            .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+            .connectTimeout(120, TimeUnit.SECONDS)
+            .readTimeout(120, TimeUnit.SECONDS)
+            .build()
+    }
+
+    @MovieApiService
+    @Provides
+    fun provideApiService(@MovieOkHttpClient client: OkHttpClient): ApiService {
         val retrofit = Retrofit.Builder()
             .baseUrl(BuildConfig.BASE_URL_MOVIEDB)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+        return retrofit.create(ApiService::class.java)
+    }
+
+    @KeycloakApiService
+    @Provides
+    fun provideKeycloakApiService(@KeycloakOkHttpClient client: OkHttpClient): ApiService {
+        val retrofit = Retrofit.Builder()
+            .baseUrl("http://10.0.2.2:8080/auth/")
             .addConverterFactory(GsonConverterFactory.create())
             .client(client)
             .build()

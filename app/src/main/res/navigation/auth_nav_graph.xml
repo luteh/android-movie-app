@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_nav_graph"
+    app:startDestination="@id/checkUsernameFragment">
+
+    <fragment
+        android:id="@+id/checkUsernameFragment"
+        android:name="com.luteh.movieapp.presentation.checkusername.CheckUsernameFragment"
+        android:label="CheckUsernameFragment">
+        <action
+            android:id="@+id/action_checkUsernameFragment_to_keycloakFragment"
+            app:destination="@id/keycloakFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/keycloakFragment"
+        android:name="com.luteh.movieapp.presentation.keycloak.KeycloakFragment"
+        android:label="KeycloakFragment">
+        <argument
+            android:name="username"
+            app:argType="string" />
+        <argument
+            android:name="isUsernameExist"
+            app:argType="boolean" />
+    </fragment>
+</navigation>

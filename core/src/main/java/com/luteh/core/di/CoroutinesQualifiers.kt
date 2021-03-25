@@ -21,3 +21,19 @@ annotation class MainImmediateDispatcher
 @Retention(AnnotationRetention.BINARY)
 @Qualifier
 annotation class ApplicationScope
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class KeycloakOkHttpClient
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class KeycloakApiService
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class MovieApiService
+
+@Retention(AnnotationRetention.BINARY)
+@Qualifier
+annotation class MovieOkHttpClient

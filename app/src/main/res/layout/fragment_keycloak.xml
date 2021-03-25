@@ -4,7 +4,7 @@
     android:layout_height="match_parent">
 
     <WebView
-        android:id="@+id/wv_google_signin"
+        android:id="@+id/wv_keycloak"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

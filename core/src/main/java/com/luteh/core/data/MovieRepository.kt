@@ -3,6 +3,7 @@ package com.luteh.core.data
 import com.luteh.core.data.local.LocalDataSource
 import com.luteh.core.data.remote.RemoteDataSource
 import com.luteh.core.domain.model.Discover
+import com.luteh.core.domain.model.KeycloakToken
 import com.luteh.core.domain.model.MovieDiscover
 import com.luteh.core.domain.model.moviedetail.Genre
 import com.luteh.core.domain.model.moviedetail.MovieDetail
@@ -23,6 +24,23 @@ class MovieRepository @Inject constructor(
     private val remoteDataSource: RemoteDataSource, private val localDataSource: LocalDataSource
 ) : IMovieRepository {
     //region Remote Transaction
+    override fun obtainKeycloakToken(
+        clientId: String,
+        redirectUri: String,
+        code: String
+    ): Flow<Result<KeycloakToken>> = flow {
+        emit(Result.Loading)
+        when (val apiResponse =
+            remoteDataSource.obtainKeycloakToken(clientId, redirectUri, code).first()) {
+            is Result.Success -> {
+                emit(Result.Success(apiResponse.data.toDomain()))
+            }
+            is Result.Empty -> {
+                emit(Result.Empty)
+            }
+        }
+    }
+
     override fun getMovieDiscover(page: Int, withGenres: String): Flow<Result<Discover>> = flow {
         emit(Result.Loading)
         when (val apiResponse = remoteDataSource.getMovieDiscover(page, withGenres).first()) {

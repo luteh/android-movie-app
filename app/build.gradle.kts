@@ -63,6 +63,7 @@ dependencies {
 
     MyDependencyPlugin.support.implementation.forEach { implementation(it) }
     MyDependencyPlugin.lifecycle.implementation.forEach { implementation(it) }
+    MyDependencyPlugin.navigation.implementation.forEach { implementation(it) }
     MyDependencyPlugin.networking.implementation.forEach { implementation(it) }
     MyDependencyPlugin.localStorage.implementation.forEach { implementation(it) }
     MyDependencyPlugin.localStorage.kapt.forEach { kapt(it) }
