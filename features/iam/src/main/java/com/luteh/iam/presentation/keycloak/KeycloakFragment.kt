@@ -9,9 +9,11 @@ import androidx.navigation.fragment.navArgs
 import com.luteh.core.common.base.BaseFragment
 import com.luteh.core.common.delegates.viewBinding
 import com.luteh.core.common.extensions.Features
+import com.luteh.core.common.extensions.gone
 import com.luteh.core.common.extensions.navigateTo
 import com.luteh.core.data.Result
 import com.luteh.iam.R
+import com.luteh.iam.data.remote.IamRemoteDataSource
 import com.luteh.iam.databinding.FragmentKeycloakBinding
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -35,11 +37,16 @@ class KeycloakFragment : BaseFragment(R.layout.fragment_keycloak) {
 
     private fun initKeycloakWebView() {
         val queryLoginHint = args.username
+//        val queryResponseMode = "fragment"
         val queryResponseType = "code"
         val queryScope = "openid"
-        val queryClientId = if (args.isUsernameExist) "account" else "register-user"
+//        val queryClientId = if (args.isUsernameExist) IamRemoteDataSource.CLIENT_ID_ACCOUNT_CONSOLE else IamRemoteDataSource.CLIENT_ID_REGISTER_USER
         val queryRedirectUri = "http://10.0.2.2:8080/auth/realms/myrealm/account/login-redirect"
+//        val queryRedirectUri = "http%3A%2F%2F10.0.2.2%3A8080%2Fauth%2Frealms%2Fmyrealm%2Faccount%2F%23%2Fpersonal-info"
         val queryState = UUID.randomUUID()
+//        val queryNonce = UUID.randomUUID()
+//        val queryCodeChallenge = UUID.randomUUID()
+//        val queryCodeChallengeMethod = "S256"
         val baseUrl = "http://10.0.2.2:8080/auth/realms/myrealm/protocol/openid-connect/auth?"
 
         vm.setClientId(args.isUsernameExist)
@@ -47,15 +54,21 @@ class KeycloakFragment : BaseFragment(R.layout.fragment_keycloak) {
 
         val fullUrl = StringBuilder().apply {
             append(baseUrl)
-            append("client_id=$queryClientId")
+            append("client_id=${vm.clientId}")
             append("&redirect_uri=$queryRedirectUri")
             append("&state=$queryState")
+//            append("&response_mode=$queryResponseMode")
             append("&response_type=$queryResponseType")
             append("&scope=$queryScope")
+//            append("&nonce=$queryNonce")
+//            append("&code_challenge=$queryCodeChallenge")
+//            append("&code_challenge_method=$queryCodeChallengeMethod")
             if (args.isUsernameExist) {
                 append("&login_hint=$queryLoginHint")
             }
         }.toString()
+
+//        val fullUrl = "http://10.0.2.2:8080/auth/realms/myrealm/account"
 
         Timber.d("fullUrl-> $fullUrl")
 
@@ -76,7 +89,7 @@ class KeycloakFragment : BaseFragment(R.layout.fragment_keycloak) {
             Timber.d("keycloakTokenLiveData: $it")
             when (it) {
                 is Result.Loading -> {
-
+                    onLoadingObtainToken()
                 }
                 is Result.Success -> {
                     Toast.makeText(
@@ -92,10 +105,14 @@ class KeycloakFragment : BaseFragment(R.layout.fragment_keycloak) {
 
                 }
                 is Result.Error -> {
-
+                    Timber.d("keycloakTokenLiveData: Error-> ${it.throwable.message}")
                 }
             }
         })
+    }
+
+    private fun onLoadingObtainToken() {
+        binding.wvKeycloak.gone()
     }
 
     private fun navigateToMainScreen() {

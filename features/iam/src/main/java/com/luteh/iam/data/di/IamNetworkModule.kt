@@ -4,7 +4,7 @@ import com.luteh.iam.data.remote.network.IamApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.components.SingletonComponent
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -17,7 +17,7 @@ import javax.inject.Qualifier
 annotation class KeycloakOkHttpClient
 
 @Module
-@InstallIn(SingletonComponent::class)
+@InstallIn(ApplicationComponent::class)
 object IamNetworkModule {
     private const val IAM_LOCAL_BASE_URL = "http://10.0.2.2:8080/auth/"
 

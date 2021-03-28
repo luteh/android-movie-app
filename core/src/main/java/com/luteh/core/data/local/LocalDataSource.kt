@@ -1,9 +1,11 @@
 package com.luteh.core.data.local
 
+import com.luteh.core.data.Result
 import com.luteh.core.data.local.datastore.MovieDataStore
 import com.luteh.core.data.local.entity.FavoriteMovieEntity
 import com.luteh.core.data.local.room.MovieDao
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -30,6 +32,15 @@ class LocalDataSource @Inject constructor(
 
     fun getFavoriteMovieById(movieId: Int) = movieDao.getFavoriteMovieById(movieId)
 
-    fun isLoggedIn() = movieDataStore.isLoggedIn()
-    suspend fun setIsLoggedIn(value: Boolean) = movieDataStore.setIsLoggedIn(value)
+//    fun isLoggedIn() = movieDataStore.isLoggedIn()
+    fun isLoggedIn() = flow {
+        emit(Result.Success(true))
+}
+    suspend fun setIsLoggedIn(value: Boolean) {
+//        movieDataStore.setIsLoggedIn(value)
+    }
+
+    suspend fun saveUserToken(){
+//        movieDataStore.saveUserToken()
+    }
 }

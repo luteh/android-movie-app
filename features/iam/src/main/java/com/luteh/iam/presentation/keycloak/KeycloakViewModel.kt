@@ -2,10 +2,12 @@ package com.luteh.iam.presentation.keycloak
 
 import android.net.Uri
 import androidx.hilt.lifecycle.ViewModelInject
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.luteh.core.common.base.BaseViewModel
 import com.luteh.core.data.Result
+import com.luteh.iam.data.remote.IamRemoteDataSource
 import com.luteh.iam.domain.model.KeycloakToken
 import com.luteh.iam.domain.usecase.ObtainKeycloakTokenUseCase
 import com.luteh.iam.domain.usecase.ObtainKeycloakTokenUseCaseParams
@@ -18,14 +20,17 @@ class KeycloakViewModel @ViewModelInject constructor(private val obtainKeycloakT
 
     val keycloakTokenLiveData = MutableLiveData<Result<KeycloakToken>>()
 
-    private var clientId = ""
+    private val _shouldShowKeycloakWebView = MutableLiveData<Boolean>()
+    val shouldShowKeycloakWebView: LiveData<Boolean> get() = _shouldShowKeycloakWebView
+
+    var clientId = ""
     private var redirectUri = ""
 
     fun setClientId(isUsernameExist: Boolean) {
-        clientId = if (isUsernameExist) "account" else "register-user"
+        clientId = if (isUsernameExist) IamRemoteDataSource.CLIENT_ID_ACCOUNT else IamRemoteDataSource.CLIENT_ID_REGISTER_USER
     }
 
-    fun setRedirectUri(redirectUri:String){
+    fun setRedirectUri(redirectUri: String) {
         this.redirectUri = redirectUri
     }
 
@@ -36,11 +41,17 @@ class KeycloakViewModel @ViewModelInject constructor(private val obtainKeycloakT
                 return
             }
 
-            if (it.getBooleanQueryParameter("code", false).not()) {
+            Timber.d("interceptUrl: queryParameterNames-> ${it.queryParameterNames}")
+            if (it.toString().contains("code=").not()) {
                 return
             }
 
-            val authorizationCode = it.getQueryParameter("code")
+//            if (it.getBooleanQueryParameter("code", false).not()) {
+//                return
+//            }
+
+//            val authorizationCode = it.getQueryParameter("code")
+            val authorizationCode = it.toString().substringAfterLast("code=")
             obtainToken(authorizationCode)
         }
     }

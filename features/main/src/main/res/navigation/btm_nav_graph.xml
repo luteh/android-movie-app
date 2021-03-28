@@ -12,7 +12,6 @@
         tools:layout="@layout/fragment_home" />
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.luteh.main.account.AccountFragment"
-        android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        android:name="com.luteh.iam.presentation.account.IamAccountFragment"
+        android:label="fragment_account" />
 </navigation>

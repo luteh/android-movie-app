@@ -5,10 +5,10 @@ import com.luteh.iam.domain.repository.IamRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.android.components.ApplicationComponent
 
 @Module(includes = [IamNetworkModule::class])
-@InstallIn(ActivityComponent::class)
+@InstallIn(ApplicationComponent::class)
 abstract class IamRepositoryModule {
     @Binds
     abstract fun provideIamRepository(iamRepositoryImpl: IamRepositoryImpl): IamRepository
