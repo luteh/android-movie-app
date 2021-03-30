@@ -54,8 +54,9 @@ object Libs {
         const val logginInterceptor = "com.squareup.okhttp3:logging-interceptor:${Versions.okhttp}"
         const val mockWebServer = "com.squareup.okhttp3:mockwebserver:${Versions.okhttp}"
         const val gson = "com.google.code.gson:gson:${Versions.gson}"
+        const val appAuth = "net.openid:appauth:${Versions.appAuth}"
 
-        val implementation = arrayOf(retrofit, converterGson, logginInterceptor, gson)
+        val implementation = arrayOf(retrofit, converterGson, logginInterceptor, gson, appAuth)
         val testImplementation = arrayOf(mockWebServer)
     }
 
@@ -183,4 +184,7 @@ object Versions {
     const val androidxTestJunit = "1.1.2"
     const val espresso = "3.1.0"
     const val mockitoKotlin = "2.2.0"
+
+    // appauth
+    const val appAuth = "0.8.1"
 }

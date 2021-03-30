@@ -22,18 +22,31 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         multiDexEnabled = true
+
+        manifestPlaceholders["appAuthRedirectScheme"] = Configs.applicationId
+    }
+
+    signingConfigs {
+        create("release"){
+            storeFile = file("${rootDir}/luteh-movie-keystore.jks")
+            storePassword = "lutehmovie"
+            keyAlias = "lutehmovie"
+            keyPassword = "lutehmovie"
+        }
     }
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = true
-            isShrinkResources = true
+//            isMinifyEnabled = true
+//            isShrinkResources = true
             setProguardFiles(
                 listOf(
                     getDefaultProguardFile("proguard-android-optimize.txt"),
                     "proguard-rules.pro"
                 )
             )
+
+            signingConfig = signingConfigs.getByName("release")
         }
 
         getByName("debug") {

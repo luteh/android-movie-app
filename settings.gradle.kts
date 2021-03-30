@@ -14,6 +14,5 @@ include(
     ":features:discover",
     ":features:genres",
     ":features:trailerVideo",
-    ":features:userReviews",
-    ":features:iam"
+    ":features:userReviews"
 )

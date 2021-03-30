@@ -10,7 +10,6 @@ object Modules {
         const val discover = "$feature:discover"
         const val genres = "$feature:genres"
         const val detail = "$feature:detail"
-        const val iam = "$feature:iam"
     }
 
     val implementation = arrayOf(
@@ -20,7 +19,6 @@ object Modules {
         Features.userReviews,
         Features.trailerVideo,
         Features.genres,
-        Features.discover,
-        Features.iam
+        Features.discover
     )
 }

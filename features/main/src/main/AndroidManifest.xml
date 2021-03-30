@@ -1,2 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.luteh.main" />
+<manifest package="com.luteh.main"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <application
+        android:allowBackup="true"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".appauth.presentation.AuthActivity"
+            android:screenOrientation="portrait" />
+
+        <activity android:name="net.openid.appauth.RedirectUriReceiverActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="10.0.2.2:8080"
+                    android:path="/auth/realms/myrealm/account/login-redirect"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.luteh.main.appauth.appauthhelper.TokenActivity"
+            android:theme="@style/AppTheme"
+            android:windowSoftInputMode="stateHidden"/>
+
+        <!--        <activity-->
+        <!--            android:name=".appauth.LoginActivity"-->
+        <!--            android:windowSoftInputMode="stateHidden"/>-->
+    </application>
+</manifest>
